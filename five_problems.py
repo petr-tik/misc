@@ -1,3 +1,6 @@
+#! usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
 taken from here
 https://www.shiftedup.com/2015/05/07/five-programming-problems-every-software-engineer-should-be-able-to-solve-in-less-than-1-hour
@@ -31,5 +34,31 @@ Write a program that outputs all possibilities to put + or - or nothing between 
 """
 
 
-def problem_one(list_of_numbers):
-    
+class problem_one(object):
+	def __init__(self):
+		self.input_list = input_list
+
+	def for_loop_sum(self, input_list):
+		sum_final = 0
+		for x in enumerate(self.input_list):
+			sum_final += self.input_list[x]
+		return sum_final
+
+	def while_loop_sum(self, input_list):
+		sum_final = 0
+		counter = 0
+		while input_list[counter]:
+			sum_final += input_list[counter]
+			counter += 1
+		return sum_final
+
+	def recursive_sum(self, input_list):
+		pass
+
+
+
+lad = problem_one()
+lad.input_list = [1,3]
+
+nedd = lad.for_loop_sum
+print nedd
