@@ -35,30 +35,57 @@ Write a program that outputs all possibilities to put + or - or nothing between 
 
 
 class problem_one(object):
-	def __init__(self):
+	def __init__(self, input_list):
 		self.input_list = input_list
 
-	def for_loop_sum(self, input_list):
+	def for_loop_sum(self):
 		sum_final = 0
 		for x in enumerate(self.input_list):
-			sum_final += self.input_list[x]
-		return sum_final
+			sum_final += self.input_list[x[0]]
+		print "the final sum is =", sum_final
 
-	def while_loop_sum(self, input_list):
+	def while_loop_sum(self):
 		sum_final = 0
 		counter = 0
-		while input_list[counter]:
-			sum_final += input_list[counter]
+		# until the counter reaches the last element of the list
+		while counter < len(self.input_list):
+			sum_final += self.input_list[counter]
 			counter += 1
-		return sum_final
+		print "The final sum of list {} is".format(self.input_list), sum_final
 
 	def recursive_sum(self, input_list):
 		pass
 
 
+sol_1 = problem_one([1,3,4])
+sol_1.for_loop_sum()
+sol_1.while_loop_sum()
 
-lad = problem_one()
-lad.input_list = [1,3]
 
-nedd = lad.for_loop_sum
-print nedd
+
+class problem_two(object):
+	"""
+	input: 2 lists of possibly different lengths
+		[a,b,c,d,e]
+		[1,2,3]
+
+	output:
+	one list where members alternate
+	[a, 1, b, 2, c, 3, d, e]
+	"""
+	
+	def __init__(self, list1, list2):
+		self.list1 = list1
+		self.list2 = list2
+
+	def merge_lists(self):
+		final_list = []
+		combined_list_length = len(self.list1) + len(self.list2)
+		x = 0
+
+
+		print "the merged list is", final_list
+
+sol_2 = problem_two([1,2,3], [4,5,6])
+sol_2.merge_lists()
+
