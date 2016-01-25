@@ -30,3 +30,6 @@ Write a program that outputs all possibilities to put + or - or nothing between 
 
 """
 
+
+def problem_one(list_of_numbers):
+    
