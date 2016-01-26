@@ -19,7 +19,10 @@ Write a function that combines two lists by alternatingly taking elements. For e
 
 Problem 3
 
-Write a function that computes the list of the first 100 Fibonacci numbers. By definition, the first two numbers in the Fibonacci sequence are 0 and 1, and each subsequent number is the sum of the previous two. As an example, here are the first 10 Fibonnaci numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, and 34.
+Write a function that computes the list of the first 100 Fibonacci numbers. 
+By definition, the first two numbers in the Fibonacci sequence are 0 and 1, 
+and each subsequent number is the sum of the previous two. 
+The first 10 Fibonnaci numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, and 34.
 
 Problem 4
 
@@ -88,4 +91,33 @@ class problem_two(object):
 
 sol_2 = problem_two([1,2,3], [4,5,6])
 sol_2.merge_lists()
+
+
+
+class problem_three(object):
+	"""outputs a list of first n Fibonacci numbers"""
+
+	def __init__(self):
+		pass
+	def fib(self, n):
+		if n <= 3:
+			print results_list[:n]
+		else:
+			counter = 3
+			results_list = [0, 1, 1]
+			while counter < n:
+				results_list.append(results_list[-2] + results_list[-1])
+				counter += 1
+
+			print results_list
+
+sol_3 = problem_three()
+sol_3.fib(10)
+
+
+
+
+
+
+
 
