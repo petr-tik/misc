@@ -121,6 +121,33 @@ sol_3.fib(10)
 
 
 
+class problem_four(object):
+
+"""
+Problem 4
+
+input 
+a list of non negative integers, 
+
+output:
+the largest possible number out of list of integers
+
+Eg given [50, 2, 1, 9], the largest formed number is 95021.
+"""
+	def __init__(self, input_list):
+		self.input_list = input_list
+
+	def first_digit(number):
+		while number > 10:
+			number /= 10
+		return number
+
+
+	def sort_by_first_digit(self, input_list):
+		# sort a list of non-negative numbers in descending order of first digits
+		# [100, 200, 9, 5] -> [9, 5, 200, 100]
+
+		return [first_digit(x) for x in self.input_list]
 
 
 
