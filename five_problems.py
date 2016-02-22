@@ -88,13 +88,14 @@ class problem_two(object):
 
 	def merge_lists(self):
 		final_list = []
-		combined_list_length = len(self.list1) + len(self.list2)
-		x = 0
-
+		for x in xrange(len(self.list1)):
+			final_list.append(self.list1[x])
+			if self.list2[x]:
+				final_list.append(self.list2[x])
 
 		print "the merged list is", final_list
 
-sol_2 = problem_two([1,2,3], [4,5,6])
+sol_2 = problem_two([1,2], [4,5,6])
 sol_2.merge_lists()
 
 
@@ -122,34 +123,40 @@ sol_3.fib(10)
 
 
 class problem_four(object):
+	"""
+	Problem 4
 
-"""
-Problem 4
+	input 
+	a list of non negative integers, 
 
-input 
-a list of non negative integers, 
+	output:
+	the largest possible number out of list of integers
 
-output:
-the largest possible number out of list of integers
+	Eg given [50, 2, 1, 9], the largest formed number is 95021.
 
-Eg given [50, 2, 1, 9], the largest formed number is 95021.
-"""
+	[9, 91, 95, 9500, 937] """
+# make a dictionary where key is first digit and the value list is sorted in ascending order. 
+
+
 	def __init__(self, input_list):
 		self.input_list = input_list
 
-	def first_digit(number):
-		while number > 10:
-			number /= 10
-		return number
+	def custom_sort(number):
+	# custom sort
+	# by first digit, 
+		# if equal:
+			# by second/third - whichever number runs out of digits first, goes first
+		# else:
+			# take the number with bigger first digit
 
 
-	def sort_by_first_digit(self, input_list):
-		# sort a list of non-negative numbers in descending order of first digits
-		# [100, 200, 9, 5] -> [9, 5, 200, 100]
+	def result(self, ordered_integers):
+		# given a list of custom sorted integers, join them into one number
+		INT = int(''.join(ordered_integers))
+		print INT
 
-		return [first_digit(x) for x in self.input_list]
-
-
+x = problem_four([1,2,3])
+x.result(['9', '50', '2', '1'])
 
 
 

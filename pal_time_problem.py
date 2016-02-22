@@ -38,7 +38,5 @@ class Solution(object):
 
 		print abs_diff
 
-
-
 x = Solution(['5:12', '12:37', '12:12', '23:54', '23:30', '00:05'])
 x.make()
