@@ -17,23 +17,28 @@ class Solution(object):
 
 	def adapt(self, string):
 		# takes strings, returns an integer
-		x = string.split(":")
-		return ((60*int(x[0])+int(x[1])) % 1440)
+		spl_x = string.split(":")
+		return ((60*int(spl_x[0])+int(spl_x[1])) % 1440)
 
 	def make(self):
-		minutes = [self.adapt(x) for x in self.array]
+		minutes = [self.adapt(_) for _ in self.array]
 		minutes.sort()
+		print minutes
 		idx = len(minutes) - 1
 		abs_diff = 2401
+		bound_check = abs(minutes[-1] % -1440) + minutes[0]
 		while idx > 0:
 			diff = minutes[idx] - minutes[idx - 1]
 			if diff < abs_diff:
 				abs_diff = diff
 			idx -= 1
 
+		if bound_check < abs_diff:
+			abs_diff = bound_check
+
 		print abs_diff
 
 
 
-x = Solution(['5:12', '12:37', '12:12', '23:34', '23:30'])
+x = Solution(['5:12', '12:37', '12:12', '23:54', '23:30', '00:05'])
 x.make()
