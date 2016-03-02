@@ -66,11 +66,10 @@ class problem_one(object):
 	def recursive_sum(self):
 		pass
 
-
+print "##########################\n\nProblem 1\n\n"
 sol_1 = problem_one([1,3,4])
 sol_1.for_loop_sum()
 sol_1.while_loop_sum()
-
 
 
 class problem_two(object):
@@ -88,24 +87,20 @@ class problem_two(object):
 		self.list1 = list1
 		self.list2 = list2
 
-	def compare_lengths(self):
-		diff = len(self.list1) - len(self.list2)
-		return diff	
+	def map_lists(self):
+		mapped_tups = map(None, self.list1, self.list2)
+		results = []
+		for x in mapped_tups:
+			if x[0]:
+				results.append(x[0])
+			if x[1]:
+				results.append(x[1])
+		print results
+	
 
-
-	def merge_equal_lists(self):
-		final_list = []
-		for x in xrange(len(self.list1)):
-			final_list.append(self.list1[x])
-			final_list.append(self.list2[x])
-		print "the merged list is", final_list
-
-	def merge_unequal_lists(self):
-
-
-sol_2 = problem_two([1,2], [4,5,6])
-sol_2.merge_lists()
-
+print "##########################\n\nProblem 2\n\n"
+sol_2 = problem_two([1,2], [4,5,6,8,10,13])
+sol_2.map_lists()
 
 
 class problem_three(object):
@@ -114,19 +109,22 @@ class problem_three(object):
 	def __init__(self):
 		pass
 	def fib(self, n):
+		results = [0, 1, 1]	
 		if n <= 3:
-			print results_list[:n]
+			print results[:n]
 		else:
 			counter = 3
-			results_list = [0, 1, 1]
 			while counter < n:
-				results_list.append(results_list[-2] + results_list[-1])
+				results.append(results[-2] + results[-1])
 				counter += 1
 
-			print results_list
+			print results
+
+
+print "##########################\n\nProblem 3\n\n"
 
 sol_3 = problem_three()
-sol_3.fib(10)
+sol_3.fib(15)
 
 
 
@@ -156,12 +154,15 @@ class problem_four(object):
 			# by second/third - whichever number runs out of digits first, goes first
 		# else:
 			# take the number with bigger first digit
-
+		pass
 
 	def result(self, ordered_integers):
 		# given a list of custom sorted integers, join them into one number
 		INT = int(''.join(ordered_integers))
 		return INT
+
+
+print "##########################\n\nProblem 4\n\n"
 
 x = problem_four([1,2,3])
 y = x.result(['9', '50', '2', '1'])
