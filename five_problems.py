@@ -53,6 +53,12 @@ print "Here are the 2 random lists:"
 print rnd_list1
 print rnd_list2
 
+###############################
+
+# 			problem 1         # 
+
+###############################
+
 
 class problem_one(object):
 	def __init__(self, input_list):
@@ -83,6 +89,10 @@ sol_1.while_loop_sum()
 
 ###############################
 
+# 			problem 2         # 
+
+###############################
+
 def map_lists(list1, list2):
 	mapped_tups = map(None, list1, list2)
 	results = []
@@ -96,6 +106,12 @@ def map_lists(list1, list2):
 print "##########################\n\nProblem 2\n\n"
 map_lists(rnd_list1, rnd_list2)
 
+
+###############################
+
+# 			problem 3         # 
+
+###############################
 
 
 def fib(n):
@@ -117,7 +133,11 @@ print "##########################\n\nProblem 3\n\n"
 fib(rnd.randint(1,30))
 
 
-##################################
+###############################
+
+# 			problem 4         # 
+
+###############################
 
 class problem_four(object):
 	"""
@@ -158,5 +178,9 @@ print "##########################\n\nProblem 4\n\n"
 x = problem_four([1,2,3])
 y = x.result(['9', '50', '2', '1'])
 
+###############################
 
+# 			problem 5         # 
+
+###############################
 
