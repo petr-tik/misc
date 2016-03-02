@@ -43,6 +43,16 @@ such that the result is always 100. For example: 1 + 2 + 34 – 5 + 67 – 8 + 9
 
 """
 
+def rnd_list():
+	return [rnd.randint(1,100) for _ in xrange(rnd.randint(10,20))]
+
+rnd_list1 = rnd_list()
+rnd_list2 = rnd_list()
+
+print "Here are the 2 random lists:"
+print rnd_list1
+print rnd_list2
+
 
 class problem_one(object):
 	def __init__(self, input_list):
@@ -71,62 +81,43 @@ sol_1 = problem_one([1,3,4])
 sol_1.for_loop_sum()
 sol_1.while_loop_sum()
 
+###############################
 
-class problem_two(object):
-	"""
-	input: 2 lists of possibly different lengths
-		[a,b,c,d,e]
-		[1,2,3]
-
-	output:
-	one list where members alternate
-	[a, 1, b, 2, c, 3, d, e]
-	"""
-	
-	def __init__(self, list1, list2):
-		self.list1 = list1
-		self.list2 = list2
-
-	def map_lists(self):
-		mapped_tups = map(None, self.list1, self.list2)
-		results = []
-		for x in mapped_tups:
-			if x[0]:
-				results.append(x[0])
-			if x[1]:
-				results.append(x[1])
-		print results
-	
+def map_lists(list1, list2):
+	mapped_tups = map(None, list1, list2)
+	results = []
+	for x in mapped_tups:
+		if x[0]:
+			results.append(x[0])
+		if x[1]:
+			results.append(x[1])
+	print results
 
 print "##########################\n\nProblem 2\n\n"
-sol_2 = problem_two([1,2], [4,5,6,8,10,13])
-sol_2.map_lists()
+map_lists(rnd_list1, rnd_list2)
 
 
-class problem_three(object):
-	"""outputs a list of first n Fibonacci numbers"""
 
-	def __init__(self):
-		pass
-	def fib(self, n):
-		results = [0, 1, 1]	
-		if n <= 3:
-			print results[:n]
-		else:
-			counter = 3
-			while counter < n:
-				results.append(results[-2] + results[-1])
-				counter += 1
+def fib(n):
+	print "This is a list of {} fibonacci numbers".format(n)
+	results = [0, 1, 1]	
+	if n <= 3:
+		print results[:n]
+	else:	
+		counter = 3
+		while counter < n:
+			results.append(results[-2] + results[-1])
+			counter += 1
 
-			print results
+		print results
 
 
 print "##########################\n\nProblem 3\n\n"
 
-sol_3 = problem_three()
-sol_3.fib(15)
+fib(rnd.randint(1,30))
 
 
+##################################
 
 class problem_four(object):
 	"""
