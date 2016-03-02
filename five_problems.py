@@ -58,32 +58,32 @@ print rnd_list2
 # 			problem 1         # 
 
 ###############################
-
+# solved 2/3
 
 class problem_one(object):
-	def __init__(self, input_list):
-		self.input_list = input_list
+	def __init__(self, inputL):
+		self.inputL = inputL
 
 	def for_loop_sum(self):
 		sum_final = 0
-		for x in self.input_list:
+		for x in self.inputL:
 			sum_final += x
-		print "the final sum is =", sum_final
+		print "the for loop sum of {} is".format(self.inputL), sum_final
 
 	def while_loop_sum(self):
 		sum_final = 0
 		counter = 0
 		# until the counter reaches the last element of the list
-		while counter < len(self.input_list):
-			sum_final += self.input_list[counter]
+		while counter < len(self.inputL):
+			sum_final += self.inputL[counter]
 			counter += 1
-		print "The final sum of list {} is".format(self.input_list), sum_final
+		print "The while loop sum of list {} is".format(self.inputL), sum_final
 
 	def recursive_sum(self):
 		pass
 
 print "##########################\n\nProblem 1\n\n"
-sol_1 = problem_one([1,3,4])
+sol_1 = problem_one(rnd_list1)
 sol_1.for_loop_sum()
 sol_1.while_loop_sum()
 
@@ -92,6 +92,7 @@ sol_1.while_loop_sum()
 # 			problem 2         # 
 
 ###############################
+# solved
 
 def map_lists(list1, list2):
 	mapped_tups = map(None, list1, list2)
@@ -112,6 +113,7 @@ map_lists(rnd_list1, rnd_list2)
 # 			problem 3         # 
 
 ###############################
+# solved
 
 
 def fib(n):
@@ -138,12 +140,13 @@ fib(rnd.randint(1,30))
 # 			problem 4         # 
 
 ###############################
+# grrrrr
 
 class problem_four(object):
 	"""
 	Problem 4
 
-	input 
+	inputL 
 	a list of non negative integers, 
 
 	output:
@@ -155,8 +158,8 @@ class problem_four(object):
 # make a dictionary where key is first digit and the value list is sorted in ascending order. 
 
 
-	def __init__(self, input_list):
-		self.input_list = input_list
+	def __init__(self, inputL):
+		self.inputL = inputL
 
 	def custom_sort(number):
 	# custom sort
