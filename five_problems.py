@@ -1,6 +1,8 @@
 #! usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import random as rnd
+
 """
 taken from here
 https://www.shiftedup.com/2015/05/07/five-programming-problems-every-software-engineer-should-be-able-to-solve-in-less-than-1-hour
@@ -48,8 +50,8 @@ class problem_one(object):
 
 	def for_loop_sum(self):
 		sum_final = 0
-		for x in enumerate(self.input_list):
-			sum_final += self.input_list[x[0]]
+		for x in self.input_list:
+			sum_final += x
 		print "the final sum is =", sum_final
 
 	def while_loop_sum(self):
@@ -61,7 +63,7 @@ class problem_one(object):
 			counter += 1
 		print "The final sum of list {} is".format(self.input_list), sum_final
 
-	def recursive_sum(self, input_list):
+	def recursive_sum(self):
 		pass
 
 
@@ -86,14 +88,20 @@ class problem_two(object):
 		self.list1 = list1
 		self.list2 = list2
 
-	def merge_lists(self):
+	def compare_lengths(self):
+		diff = len(self.list1) - len(self.list2)
+		return diff	
+
+
+	def merge_equal_lists(self):
 		final_list = []
 		for x in xrange(len(self.list1)):
 			final_list.append(self.list1[x])
-			if self.list2[x]:
-				final_list.append(self.list2[x])
-
+			final_list.append(self.list2[x])
 		print "the merged list is", final_list
+
+	def merge_unequal_lists(self):
+
 
 sol_2 = problem_two([1,2], [4,5,6])
 sol_2.merge_lists()
@@ -153,10 +161,10 @@ class problem_four(object):
 	def result(self, ordered_integers):
 		# given a list of custom sorted integers, join them into one number
 		INT = int(''.join(ordered_integers))
-		print INT
+		return INT
 
 x = problem_four([1,2,3])
-x.result(['9', '50', '2', '1'])
+y = x.result(['9', '50', '2', '1'])
 
 
 
