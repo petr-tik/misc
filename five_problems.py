@@ -161,25 +161,47 @@ class problem_four(object):
 	def __init__(self, inputL):
 		self.inputL = inputL
 
-	def custom_sort(number):
-	# custom sort
-	# by first digit, 
-		# if equal:
-			# by second/third - whichever number runs out of digits first, goes first
-		# else:
-			# take the number with bigger first digit
-		pass
+	def split(self, num):
+		# takes a number and splits it into subgroups of increasing digits
+		num_string = str(num)
+		result = []		
+		start = 0
+		for x in xrange(1, len(num_string)):
+			if num_string[x] <= num_string[x - 1]:
+				result.append(num_string[start:x])
+				start = x
 
-	def result(self, ordered_integers):
-		# given a list of custom sorted integers, join them into one number
-		INT = int(''.join(ordered_integers))
-		return INT
+		result.append(num_string[start:])
+		return result
 
+	def compare(self, a, b):
+		
+		# use split function to break integers into lists of numbers
+		sa = self.split(a)
+		sb = self.split(b)
+
+		# loop over the smallest list
+		for x in xrange(min(len(sa), len(sb))):	
+			if sa[x] == sb[x]:
+				continue
+			elif sa[x] > sb[x]:
+				return -1
+			else:
+				return 1
+		# you got to the end of the loop without the results find which string is longer
+		# if 
+		return len(sa) - len(sb)
+
+
+	def solve(self):
+		x = sorted(self.inputL, cmp=self.compare)
+		print x
 
 print "##########################\n\nProblem 4\n\n"
 
-x = problem_four([1,2,3])
-y = x.result(['9', '50', '2', '1'])
+x = problem_four(rnd_list1)
+y = x.solve()
+print y
 
 ###############################
 
