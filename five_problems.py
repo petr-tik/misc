@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import random as rnd
+from itertools import combinations_with_replacement
+
 
 """
 taken from here
@@ -163,6 +165,7 @@ class problem_four(object):
 
 	def split(self, num):
 		# takes a number and splits it into subgroups of increasing digits
+		# takes 1232356, returns [123, 23, 56]
 		num_string = str(num)
 		result = []		
 		start = 0
@@ -188,14 +191,13 @@ class problem_four(object):
 				return -1
 			else:
 				return 1
-		# you got to the end of the loop without the results find which string is longer
-		# if 
+		# you got to the end of the loop without the results find which string is longer 
 		return len(sa) - len(sb)
 
 
 	def solve(self):
-		x = sorted(self.inputL, cmp=self.compare)
-		print x
+		return sorted(self.inputL, cmp=self.compare)
+		
 
 print "##########################\n\nProblem 4\n\n"
 
@@ -208,4 +210,46 @@ print y
 # 			problem 5         # 
 
 ###############################
+"""
+Write a program that outputs all possibilities to put + or - or nothing between the numbers 1, 2, ..., 9 (in this order) 
+such that the result is always 100. For example: 1 + 2 + 34 – 5 + 67 – 8 + 9 = 100.
 
+[1,'p',2,'j',3,'m',4]
+
+
+"""
+
+
+
+class problem_five(object):
+	def __init__(self):
+		self.inputL = [x for x in xrange(1,10)]
+
+
+	def combs(self):
+		# makes a list: len 3**8 with all possible combinations of -, + and join
+		combs = [x for x in combinations_with_replacement(['m', 'p', 'j'], 8)]
+
+
+	def insert(self, sign_combo):
+		pass
+
+
+
+	def calc(self):
+		# takes a list of sign combinations and range(1,10) 
+		# insert signs, join the numbers and calcuate the result
+		
+
+		pass		
+
+
+
+	def solve(self):
+		# finds which sign combos yield the needed result and adds them to the list
+		res = []
+		# for x in sign_combs:
+			# if self.insert_n_calc(x) = 100: 
+				#res.append()
+
+		print res
