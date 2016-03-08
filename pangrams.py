@@ -24,9 +24,11 @@ def is_pangram(s):
         print "not pangram"
     else:
         print "pangram"
-    
+
+sentence = raw_input("Please input your sentence here?\n")    
 
 is_pangram("hello how are you you beautiful bastard who lives in china before america takes over")
 is_pangram("The quick brown fox jumps over the lazy dog")
 is_pangram("We promptly judged antique ivory buckles for the next prize")
 is_pangram("We promptly judged antique ivory buckles for the prize")
+is_pangram(sentence)
