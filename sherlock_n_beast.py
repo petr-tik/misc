@@ -26,7 +26,7 @@ def tup_to_number(tup):
         return int(res)
 
 def solve():
-    for i in xrange(20):
+    for i in xrange(21):
         x = generate_decent(i)
         if len(x) >= 1:
             res = tup_to_number(x[-1])
