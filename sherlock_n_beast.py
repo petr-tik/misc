@@ -10,7 +10,6 @@ def generate_decent(num_digits):
     for cand in candidates:
         if cand.count('3') % 5 == 0 and cand.count('5') % 3 == 0:
             decent.append(cand)
-
     return decent
 
 
@@ -31,6 +30,5 @@ def solve():
         if len(x) >= 1:
             res = tup_to_number(x[-1])
             print res
-
 
 solve()
