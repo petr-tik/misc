@@ -147,19 +147,14 @@ fib(rnd.randint(1,30))
 class problem_four(object):
 	"""
 	Problem 4
-
 	inputL 
 	a list of non negative integers, 
 
 	output:
 	the largest possible number out of list of integers
-
 	Eg given [50, 2, 1, 9], the largest formed number is 95021.
-
 	[9, 91, 95, 9500, 937] """
 # make a dictionary where key is first digit and the value list is sorted in ascending order. 
-
-
 	def __init__(self, inputL):
 		self.inputL = inputL
 
@@ -178,7 +173,6 @@ class problem_four(object):
 		return result
 
 	def compare(self, a, b):
-		
 		# use split function to break integers into lists of numbers
 		sa = self.split(a)
 		sb = self.split(b)
@@ -193,7 +187,6 @@ class problem_four(object):
 				return 1
 		# you got to the end of the loop without the results find which string is longer 
 		return len(sa) - len(sb)
-
 
 	def solve(self):
 		return sorted(self.inputL, cmp=self.compare)
