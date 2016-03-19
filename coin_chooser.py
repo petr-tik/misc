@@ -7,19 +7,26 @@ import sys
 N = int(raw_input().strip())
 coins = [1, 2, 5, 10, 20, 50, 100]
 distr = []
-res = 0
+cache = [[-1 for _ in coins] for _ in xrange(N + 1)] 
 
-def solve(NUMBER):
+def solve(NUMBER, start_pos):
+    # check if the value has been calculated
+    if cache[NUMBER][start_pos] != -1:
+        return cache[NUMBER][start_pos]
+    
+    res = 0
+
     if NUMBER == 0:
-        global res 
-        res += 1
-        return
+        res = 1
 
-    for x in coins:
-        if x <= NUMBER and (not distr or x >= distr[-1]):
-            distr.append(x)
-            solve(NUMBER - x)
-            distr.pop()
+    else:
+        for i in xrange(start_pos, len(coins)):
+            if coins[i] <= NUMBER:
+                res += solve(NUMBER - coins[i], i)
+            else:
+                break
+    
+    cache[NUMBER][start_pos] = res
+    return res
 
-solve(N)
-print res
+print solve(250, 0)
