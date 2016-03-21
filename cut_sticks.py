@@ -20,8 +20,7 @@ def cutting(sticks):
     while sticks: 
         cut_measure = min(sticks)
         print "new minimum: {}".format(cut_measure)
-        sticks = [x-cut_measure for x in sticks]
-        sticks = [x for x in sticks if x > 0]
+        sticks = [x-cut_measure for x in sticks if x > cut_measure]
         if sticks:
             lengths.append(len(sticks))
     return lengths        
