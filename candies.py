@@ -16,9 +16,6 @@ for _ in xrange(N):
 """
 # print len(candies), candies
 
-candies = [1 for _ in xrange(10)]
-
-ratings = [random.randint(1,20) for _ in xrange(10)]
 
 ratings_spec = [2, 4, 2, 6, 1, 7, 8, 9, 2, 1]
 ratings_new = [4, 6, 10, 9, 7, 5, 3, 4, 12, 19, 17, 13]
@@ -41,7 +38,6 @@ def make_graph(ratings):
     start = [idx for idx, item in enumerate(in_edges) if item == 0]
     return graph_list, start
 
-graph, start = make_graph(ratings_spec)
 
 def bfs(ratings, graph, start):    
     candies = [-1 for _ in ratings] 
@@ -53,15 +49,24 @@ def bfs(ratings, graph, start):
         for from_node in cur:
             for to_node in graph[from_node]:
                 if candies[to_node] == -1: # not visited yet
+                    # if not visited, put into the list for starting next iteration
                     next_gen.append(to_node)
+                # the next vertex will have value at least 1 greater than the previous    
                 candies[to_node] = candies[from_node] + 1
         cur = next_gen
 
-    return sum(candies)
+    return candies
 
-print bfs(ratings_spec, graph, start)
+def solve(ratings):
+    print ratings
+    graph, start = make_graph(ratings)
+    return bfs(ratings, graph, start)
 
-print ratings_spec
+for _ in xrange(5):
+    ratings = [random.randint(1,20) for _ in xrange(10)]
+    candies = solve(ratings)
+    print sum(candies)
+
 # print make_graph([4, 5, 6, 6, 7])
 
 
