@@ -4,19 +4,6 @@
 
 import random
 
-"""
-N = int(raw_input())
-
-candies = [1 for _ in xrange(N)]
-
-
-ratings = []
-for _ in xrange(N):
-    ratings.append(int(raw_input()))
-"""
-# print len(candies), candies
-
-
 ratings_spec = [2, 4, 2, 6, 1, 7, 8, 9, 2, 1]
 ratings_new = [4, 6, 10, 9, 7, 5, 3, 4, 12, 19, 17, 13]
 
@@ -67,9 +54,3 @@ for _ in xrange(5):
     candies = solve(ratings)
     print sum(candies)
 
-# print make_graph([4, 5, 6, 6, 7])
-
-
-#print "We need to buy {} candies".format(candy_calc(ratings))
-#print ratings_spec
-#print "We need to buy {} candies".format(candy_calc(ratings_spec))
