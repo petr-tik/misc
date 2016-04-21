@@ -6,8 +6,9 @@ def common_string(word1, word2):
         letters_in_words[char] = True
 
     for char in word2:
-        if char in letters_in_words:
+        if char in letters_in_words: # if the key is already in dict
             return "YES"
+    # you got to the end of word2 and there is nothing left
     return "NO"
     
 
