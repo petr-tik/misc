@@ -1,6 +1,5 @@
 #! usr/bin/env python
 
-
 def common_string(word1, word2):
     letters_in_words = {}
     for char in word1:
@@ -10,7 +9,7 @@ def common_string(word1, word2):
         if char in letters_in_words:
             return "YES"
     return "NO"
-
+    
 
 T = int(raw_input())
 for x in xrange(T):
