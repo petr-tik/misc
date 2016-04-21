@@ -1,5 +1,7 @@
 #! usr/bin/env/ python
 
+# https://www.hackerrank.com/challenges/sherlock-and-anagrams
+
 def make_dict(word):
     "takes a string and returns a dict with character as key, count as value"
     letters_in_words = {}
