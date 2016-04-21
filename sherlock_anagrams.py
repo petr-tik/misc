@@ -14,8 +14,16 @@ def make_dict(word):
     return letters_in_words
 
 
+def are_anagrams(string1, string2):
+    "takes 2 (sub)strings and checks if they are anagrams using the make_dict helper"
+    if make_dict(string1) == make_dict(string2):
+        return True
+    else:
+        return False 
+
 
 def count_anagrams(phrase):
+    "iterate over the big string and check pairs of substrings of same length"
     n = len(phrase)
     for subarrays in xrange(2, n):
         length = n - subarrays + 1
