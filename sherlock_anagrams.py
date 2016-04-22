@@ -25,8 +25,12 @@ def are_anagrams(string1, string2):
 def count_anagrams(phrase):
     "iterate over the big string and check pairs of substrings of same length"
     n = len(phrase)
-    for subarrays in xrange(2, n):
+    for subarrays in xrange(2, n + 1):
         length = n - subarrays + 1
+        for x in xrange(0, n - length + 1):
+            print phrase[x:x+length]
+
+count_anagrams("abcdefgh")
 
 
 
