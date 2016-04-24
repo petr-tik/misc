@@ -17,9 +17,9 @@ def max_to_end(L):
     output_list.append(temp_max)
     for idx in xrange(len(L) - 2, -1, -1):
         if L[idx] > temp_max:
-            temp_max = L[idx]    
+            temp_max = L[idx]
         output_list.append(temp_max)
-    
+
     return output_list[::-1]
 
 
@@ -32,15 +32,14 @@ def maximise_profit(datapoints, max_values):
             balance += shares_bought*price
             print "Selling {} shares for {}".format(shares_bought, price)
             shares_bought = 0
-        else:            
+        else:
             balance -= price
             shares_bought += 1
             print "Buying one share for {}".format(price)
-            
+
         print "Given the array {} the balance is {}".format(datapoints[:idx+1], balance)
 
     print balance
-
 
 
 for x in xrange(5):
