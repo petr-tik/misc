@@ -44,13 +44,19 @@ def count_anagrams(phrase):
     print answer 
 
 
-
 count_anagrams("abba")
+count_anagrams("ifailuhkqq")
+count_anagrams("hucpoltgty")
+count_anagrams("ovarjsnrbf")
+count_anagrams("pvmupwjjjf")
+count_anagrams("iwwhrlkpek")
 
+"""
+T = int(raw_input()) # number of test cases
+for x in xrange(T):
+    count_anagrams(raw_input())
 
-
-
-
+"""
 
 
 
