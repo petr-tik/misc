@@ -3,6 +3,17 @@
 # https://www.hackerrank.com/challenges/beautiful-path
 
 
+def make_graph():
+    N, M = [int(x) for x in raw_input().split()]
+    graph = {}
+    for _ in xrange(M):
+        start, finish, cost = [int(x) for x in raw_input().split()]
+        if not graph.has_key(start):
+            graph[start] = [(finish, cost)]
+        else:
+            graph[start].append((finish, cost))
+    return graph
+
 def dec_to_binary(costs):
     # given a path with decimal cost values, 
     # result in binary strings of same length 
