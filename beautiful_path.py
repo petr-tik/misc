@@ -12,11 +12,12 @@ def make_graph():
             graph[start] = [(finish, cost)]
         else:
             graph[start].append((finish, cost))
+    # assertEqual(N, len(graph))
     return graph
 
 def dec_to_binary(costs):
     # given a path with decimal cost values, 
-    # result in binary strings of same length 
+    # return binary strings of uniform length 11 chars
     costs_bin = []
     for cost in costs:
         cost_bin = bin(cost)[2:]
@@ -25,28 +26,40 @@ def dec_to_binary(costs):
     return costs_bin
 
 def bitwise_or(binary_strings):
-    # given a list of binary values, return the result of bitwise or on them
+    # given a list of binary value strings, return the integer result of 'bitwise or'
+    # bitwise or compares >=2 binary numbers of the same length bit by bit,
+    # assigning 1 to the result if at least one of the bits is 1
+    # eg
+    #           101001
+    #           010110
+    # result:   111111
     res = ['0' for _ in xrange(11)]
     for num in binary_strings:
         for idx, bit in enumerate(num):
             if bit == '1':
-                res[idx] = '1'
+                res[idx] = '1' # else it will still be 0
     return int("".join(res), 2)
 
+def find_paths(graph, start, finish, path=[]):
+    path = path + [start]
+    if start == finish:
+        return [path]
+    if not graph.has_key(start):
+        return []
+    paths = []
+    for node in graph[start]:
+        if node[0] not in path:
+            newpaths = find_paths(graph, node[0], finish, path)
+            for newpath in newpaths:
+                paths.append(newpath)
+    return paths
 
-def find_paths(graph, start, finish):
-    pass    
-
-
-
-
-def min_path(paths):
-    res = 1000000000000
+def find_min_path(paths):
+    res = -1
     for path in paths:
-        if bitwise_or(path) < res:
+        if res == -1 or bitwise_or(path) < res:
             res = bitwise_or(path)
     return res
-
 
 
 def solve(graph, start, finish):
@@ -54,9 +67,16 @@ def solve(graph, start, finish):
     if len(paths) == 0:
         print "-1"
     elif len(paths) == 1:
-        print bitwise_or(paths[0])
+        print bitwise_or(dec_to_binary(paths[0]))
     else:
-        print min_path(paths)
+        print find_min_path(paths)
 
 
 print bitwise_or(dec_to_binary([5,4,1024]))
+
+# graph = make_graph()
+# start = raw_input()
+# 
+
+# print make_graph()
+solve(make_graph(), 1, 3)
