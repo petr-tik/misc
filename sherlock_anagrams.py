@@ -42,7 +42,9 @@ def count_anagrams(phrase):
             dict_from_word = make_dict(word)
             under_investigation.append(dict_from_word)
         
+        # make unordered pairs (combinations) of all dicts of the same length strings
         pairs_of_equal_length_dicts = list(combinations(under_investigation, 2))
+        # the number of tuples that return true on make_dict is added to final answer
         num_of_anagrams = len(filter(are_anagrams, pairs_of_equal_length_dicts))
         answer += num_of_anagrams
     print answer 
