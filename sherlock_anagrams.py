@@ -17,8 +17,10 @@ def make_dict(word):
 
 
 def are_anagrams(tup):
-    "takes 2 (sub)strings and checks if they are anagrams using the make_dict helper"
-    if make_dict(tup[0]) == make_dict(tup[1]):
+    "takes a tuple of dicts and checks if they are anagrams"
+    dict1 = tup[0]
+    dict2 = tup[1]
+    if cmp(dict1, dict2) == 0:
         return True
     else:
         return False 
@@ -39,8 +41,10 @@ def count_anagrams(phrase):
             # make a dict from that word
             dict_from_word = make_dict(word)
             under_investigation.append(dict_from_word)
-        print filter(are_anagrams, list(combinations(under_investigation, 2)))
-        print len(filter(are_anagrams, list(combinations(under_investigation, 2))))
+        
+        pairs_of_equal_length_dicts = list(combinations(under_investigation, 2))
+        num_of_anagrams = len(filter(are_anagrams, pairs_of_equal_length_dicts))
+        answer += num_of_anagrams
     print answer 
 
 
