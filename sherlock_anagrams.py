@@ -50,18 +50,6 @@ def count_anagrams(phrase):
     print answer 
 
 
-count_anagrams("abba")
-print "should be", 3
-count_anagrams("ifailuhkqq")
-print "should be", 2
-count_anagrams("hucpoltgty")
-print "should be", 2
-count_anagrams("ovarjsnrbf")
-print "should be", 6
-count_anagrams("pvmupwjjjf")
-print "should be", 3
-count_anagrams("iwwhrlkpek")
-
 """
 T = int(raw_input()) # number of test cases
 for x in xrange(T):
