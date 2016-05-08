@@ -1,7 +1,15 @@
 #! usr/bin/env python
 
+from collections import deque
+
 # https://www.hackerrank.com/challenges/beautiful-path
 
+# Turn the graph into unweighted, so you can run bfs on it. 
+# There are only 2**10 binary lengths between 2 vertices
+# Turn 
+#
+#
+#
 
 def make_graph():
     N, M = [int(x) for x in raw_input().split()]
@@ -15,51 +23,20 @@ def make_graph():
     # assertEqual(N, len(graph))
     return graph
 
-def dec_to_binary(costs):
-    # given a path with decimal cost values, 
-    # return binary strings of uniform length 11 chars
-    costs_bin = []
-    for cost in costs:
-        cost_bin = bin(cost)[2:]
-        full_num = '0'*(11 - len(cost_bin)) + cost_bin
-        costs_bin.append(full_num)
-    return costs_bin
 
-def bitwise_or(binary_strings):
-    # given a list of binary value strings, return the integer result of 'bitwise or'
-    # bitwise or compares >=2 binary numbers of the same length bit by bit,
-    # assigning 1 to the result if at least one of the bits is 1
-    # eg
-    #           101001
-    #           010110
-    # result:   111111
-    res = ['0' for _ in xrange(11)]
-    for num in binary_strings:
-        for idx, bit in enumerate(num):
-            if bit == '1':
-                res[idx] = '1' # else it will still be 0
-    return int("".join(res), 2)
+def bfs(graph, start):
+    dist = [-1 for _ in xrange(len(graph))]
+    dist[start] = 0
+    q = deque([]) # make a queue from deque object
+    q.appendleft(start)
+    while q:
+        v = q.pop() # study the first out element from queue
+        for idx in xrange(len(graph[v])): # all v's children indices
+            v2 = g[v][idx] # each child 
+            if dist[v2] == -1: # still hasn't been visited
+                dist[v2] = dist[v] + 1 # to get to the child we need one more step than to parent
+                q.appendleft(v2)
 
-def find_paths(graph, start, finish, path=[]):
-    path = path + [start]
-    if start == finish:
-        return [path]
-    if not graph.has_key(start):
-        return []
-    paths = []
-    for node in graph[start]:
-        if node[0] not in path:
-            newpaths = find_paths(graph, node[0], finish, path)
-            for newpath in newpaths:
-                paths.append(newpath)
-    return paths
-
-def find_min_path(paths):
-    res = -1
-    for path in paths:
-        if res == -1 or bitwise_or(path) < res:
-            res = bitwise_or(path)
-    return res
 
 
 def solve(graph, start, finish):
