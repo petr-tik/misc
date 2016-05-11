@@ -18,11 +18,31 @@ def is_palindrome(s):
             pass
     return True
 
+def word_to_dict(s):
+    "takes a string and returns a dict with chars as keys, positions as values"
+    res = {}
+    for idx, char in enumerate(s):
+        if not res.has_key(char):
+            res[char] = [idx]
+        else:
+            res[char].append(idx)
+
+    return res
+
+print is_palindrome('aaa')
 
 def solve(s):
     if is_palindrome(s):
         print "-1"
-    for idx, char in enumerate(s):
+    
+    word_dict = word_to_dict(s)
+
+    candidates = []
+    for key in word_dict:
+        if len(word_dict[key]) % 2 != 1:
+            candidates.extend(word_dict[key])
+
+    for idx in candidates:
         if is_palindrome(''.join([s[0:idx], s[idx+1::]])):
             print idx
             break
