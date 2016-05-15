@@ -8,53 +8,34 @@ from itertools import combinations_with_replacement, combinations
 """
 need to generate numbers from threes of 5's or fives of 3's 
 
+the greatest decent number has as many fives as possible, then as many threes as possible
+given N, iterate fives from N to 0, and threes from 0 to N.
 
+As soon as you have a combinations of fives and threes occuring 3x and 5x times, 
+make a number with all the 5s at the beginning followed by all the threes. 
+
+If no such number exists, -1 is the answer
 
 """
 
-
-def can_gen_decent(num_digits):
-    rem_from_three = num_digits % 3
-    if num_of_digits % 5 == 0 or num_of_digits % 3 == 0 or rem_from_three % 5 == 0: 
-        print "we can make a decent number with {} digits".format(num_digits)
-    else:
-        print "No we cannnot make a decent number with {} digits".format(num_digits)
-
-
-
-def generate_decent(num_digits):
-    candidates = list(combinations_with_replacement(['3','5'], num_digits))
-    decent = []
-    for cand in candidates:
-        if cand.count('3') % 5 == 0 and cand.count('5') % 3 == 0:
-            decent.append(cand)
-    print "These are the options", decent
-    return decent # a list of candidate tuples in string form
-
-
-def tup_to_number(tup):
-    # takes a tuple of chars 
-    # returns an integer made from the chars in tuple
-    if not tup:
-        return -1
-    else:
-        res = ''
-        for dig in tup:
-            res += dig
-        return int(res)
+def make_decent(N):
+    "given N generate the largest decent number of N digits"
+    fives = N
+    for fives in xrange(N, -1, -1):
+        threes = N - fives
+        if fives % 3 == 0 and threes % 5 == 0:
+            res = ''.join([fives*'5', threes*'3'])
+            # all 5s followed by all 3s
+            return int(res)
+    # if nothing, then -1
+    return -1
 
 def solve():
-    for i in xrange(21):
-        print i
-        x = generate_decent(i)
-        if len(x) >= 1:
-            res = tup_to_number(x[-1])
-            print res
+    N = int(raw_input())
+    print make_decent(N)
 
-#solve()
+## HackerRank boilerplate
 
-def check():
-    for i in xrange(21):
-        can_gen_decent(i)
-
-check()
+t = int(raw_input().strip())
+for a0 in xrange(t):
+    solve()
