@@ -1,9 +1,6 @@
 #! usr/bin/env/ python
 
-from itertools import combinations_with_replacement, combinations
-
 # https://www.hackerrank.com/challenges/sherlock-and-array
-
 
 """
 need to generate numbers from threes of 5's or fives of 3's 
