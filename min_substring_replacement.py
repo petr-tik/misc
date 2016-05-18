@@ -4,12 +4,8 @@
 
 # ideas from here
 # http://articles.leetcode.com/finding-minimum-window-in-s-which/
+# http://www.geeksforgeeks.org/find-the-smallest-window-in-a-string-containing-all-characters-of-another-string/
 
-def is_steady(char_dict, length):
-    # takes a dict of chars from string and returns True if already steady
-    if any(len(char_dict[key]) != length/4 for key in char_dict):
-        return False
-    return True
 
 def string_to_dict(string, length):
     substring_length = 0
@@ -27,11 +23,6 @@ def string_to_dict(string, length):
     # return char_dict, too_many, substring_length
     return char_dict, too_many, length
 
-def min_substring(string, letter_counts):
-    # given a string and a hashmap of letters and their counts, 
-    # return the minimal substring length including each char count number of times
-    # http://www.geeksforgeeks.org/find-the-smallest-window-in-a-string-containing-all-characters-of-another-string/
-    pass
 
 def solve(string, length):
     # given a string, start looking for relevant substrings, 
