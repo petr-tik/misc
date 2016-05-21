@@ -81,13 +81,23 @@ class problem_one(object):
 			counter += 1
 		print "The while loop sum of list {} is".format(self.inputL), sum_final
 
-	def recursive_sum(self):
-		pass
+	def recursive_sum(self, alist = None):
+		if alist is None:
+			alist = self.inputL
+		res = 0
+		if len(alist) == 1:
+			return alist[0]
+		else:
+			res += alist[0] + self.recursive_sum(alist[1:])
+		return res
+
+
 
 print "##########################\n\nProblem 1\n\n"
 sol_1 = problem_one(rnd_list1)
 sol_1.for_loop_sum()
 sol_1.while_loop_sum()
+print "The recursive sum of list {} is".format(sol_1.inputL), sol_1.recursive_sum()
 
 ###############################
 
