@@ -25,4 +25,3 @@ def solve():
         else:
             res += max(number1, number2) - min(number1, number2)
     return res
-    
