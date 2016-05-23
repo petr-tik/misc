@@ -1,5 +1,7 @@
 #! usr/bin/env python
 
+# https://www.hackerrank.com/challenges/fibonacci-modified
+
 first, second, N = map(int,raw_input().split())
 
 def func_fact(idx, first, second):
@@ -13,6 +15,5 @@ def func_fact(idx, first, second):
         counter += 1
      
     return results[idx-1]
-
 
 print func_fact(N, first, second)
