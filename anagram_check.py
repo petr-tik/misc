@@ -19,13 +19,13 @@ def is_anagram(first_word, second_word):
     word1 = {x : 0 for x in alphabet}
     word2 = {x : 0 for x in alphabet}
     for letter in first_word:
-        for letter2 in second_word: 
+        for letter2 in second_word:
             try:
                 word1[letter] += 1
                 word2[letter2] += 1
             except IndexError:
                 return False
-                
+
     print word1
     print word2
 

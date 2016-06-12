@@ -46,3 +46,4 @@ def bfs(graph, start, finish):
 graph = make_graph()
 start, finish = map(int, raw_input().split())
 print bfs(graph, start, finish)
+
