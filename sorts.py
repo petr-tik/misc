@@ -20,6 +20,17 @@ def bubble_sort(arr):
     return arr
 
 def insertion_sort(arr):
-    pass
+    start = 0
+    length = len(arr)
+    for idx_in_unsorted in xrange(start + 1, length):
+        moving_item = arr[idx_in_unsorted]
+        idx_in_sorted = idx_in_unsorted - 1
+        while idx_in_unsorted >= 0 and arr[idx_in_sorted] > moving_item:
+            arr[idx_in_sorted + 1] = arr[idx_in_sorted]
+            idx_in_sorted -= 1
+
+
+
+    
 
 print bubble_sort([3,3, 3, 1, 1, 0, -5])
