@@ -34,12 +34,20 @@ def insertion_sort(arr):
     return arr
 
 
+
 class TestSorts(unittest.TestCase):
     """docstring for ClassName"""
     def setUp(self):
-        self.list1 = [random.randint(0,25) for _ in xrange(15)]
+        self.length = 15
+        self.list1 = [random.randint(0,25) for _ in xrange(self.length)]
 
-    def testsortsequal(self):
+    def test_bubble_sort(self):
+        list1 = bubble_sort(self.list1)
+        for idx in xrange(1, self.length):
+
+            self.assertTrue(list1[idx - 1] <= list1[idx])
+
+    def test_sorts_equal(self):
         self.assertEqual(bubble_sort(self.list1), insertion_sort(self.list1))
 
 
