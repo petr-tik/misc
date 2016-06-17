@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 
 ## different sorting algos
-
-arr = [9,8,7,6,5,4,3,2,1]
+import unittest
+import random
 
 def binary_sort(arr):
     pass
@@ -20,17 +20,28 @@ def bubble_sort(arr):
     return arr
 
 def insertion_sort(arr):
-    start = 0
     length = len(arr)
-    for idx_in_unsorted in xrange(start + 1, length):
+
+    for idx_in_unsorted in xrange(1, length):
         moving_item = arr[idx_in_unsorted]
         idx_in_sorted = idx_in_unsorted - 1
-        while idx_in_unsorted >= 0 and arr[idx_in_sorted] > moving_item:
+        while idx_in_sorted >= 0 and arr[idx_in_sorted] > moving_item:
             arr[idx_in_sorted + 1] = arr[idx_in_sorted]
             idx_in_sorted -= 1
+        idx_in_sorted += 1
+        arr[idx_in_sorted] = moving_item
+
+    return arr
 
 
+class TestSorts(unittest.TestCase):
+    """docstring for ClassName"""
+    def setUp(self):
+        self.list1 = [random.randint(0,25) for _ in xrange(15)]
 
-    
+    def testsortsequal(self):
+        self.assertEqual(bubble_sort(self.list1), insertion_sort(self.list1))
 
-print bubble_sort([3,3, 3, 1, 1, 0, -5])
+
+if __name__ == '__main__':
+    unittest.main(verbosity=10)
