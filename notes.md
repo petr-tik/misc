@@ -15,7 +15,7 @@ Stored procedures are subroutines stored in Relational Database Management Syste
 
 Precompilation and being stored in the database engine minimises overhead and network traffic respectively. The business advantages include: verbalising frequently used business logic for which you can provide an API endpoint and giving access rights to such procedures and/or endpoints for users, who, otherwise, have no access rights to the database. 
 
-The disadvantages are mostly related to tooling, vendor-lock and migration. Different vendors provide different DSLs, debuggers and version control systems to write stored procedures, thus locking the system into the vendor's product line. Differences in syntax and functionality might only worsen the vendor lock-in.
+The disadvantages are mostly related to tooling, vendor lock-in and difficulty in migrating to different db providers. Different vendors provide different DSLs, debuggers and version control systems to write stored procedures, thus locking the system into the vendor's product line. Differences in syntax and functionality might only worsen the vendor lock-in.
 
 When migrating to a different system a script needs to pull out all stored procedures and translate them to the new DSL (if different) manually, test them against the results of previous database QL and save it in the new database engine. 
 
@@ -24,7 +24,20 @@ When migrating to a different system a script needs to pull out all stored proce
 
 Temporary tables is a feature in some RDBMS to store and process intermediate results of selection, update and join operations on usual SQL tables. They are started and terminated with each database connection and are not stored on server like stored procedures.
 
-The advantage is the ability to create business logic on-the-fly without saving anything on the database engine. 
+The advantage is the ability to create business logic on-the-fly without saving anything on the database engine. Using the same sort, select, filter and join functionality without the logging and locking overhead means temporary tables allow exploratory work with the db, without worrying about overwriting in the main database. 
+
+Temporary tables are an exploratory tool, which disallows the user to update the table (no update, insert or delete statements). 
+
+## What is the transaction log and why is it important? 
+
+A transaction log inside a RDBMS is a linked-list like plaintext file that records changes to the database, which might need to be reviewed in case of crashes and/or hardware failures. Due to SQL design and ACID compliance transaction log is a compulsory part of most RDBMS with different implementation. PostgreSQL postmaster spins up a different process for write-ahead logging (WAL), which only changes data files after the upcoming changes have been logged. Even if a transaction fails, the logs have already recorded what was going to happen, so a playback can be started.
+
+Transaction logs are important, because they keep enough information to track and undo database changes in chronological order. This, combined with the db data file, allows rolling back and recovering back to any recorded state of the database. 
+
+
+## What is an index? How are they used and why are they important? 
+
+
 
 Systems Qs
 
