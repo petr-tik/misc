@@ -44,7 +44,11 @@ class TestSorts(unittest.TestCase):
     def test_bubble_sort(self):
         list1 = bubble_sort(self.list1)
         for idx in xrange(1, self.length):
+            self.assertTrue(list1[idx - 1] <= list1[idx])
 
+    def test_insertion_sort(self):
+        list1 = insertion_sort(self.list1)
+        for idx in xrange(1, self.length):
             self.assertTrue(list1[idx - 1] <= list1[idx])
 
     def test_sorts_equal(self):
