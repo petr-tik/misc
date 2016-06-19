@@ -41,7 +41,17 @@ Transaction logs are important, because they keep enough information to track an
 
 Systems Qs
 
-2. Troubleshoot network connectivity
+## 1 How do you look at the disk utilisation on a Linux host? 
+
+Use the df command in terminal. 
+
+df -a 
+gives information about all file systems
+df -h
+gives information in human readable form
+
+
+## 2. Troubleshoot network connectivity
 
 Windows and linux 
 Linux - run a telnet test
@@ -50,6 +60,15 @@ Linux - run a telnet test
 Verify the website status with the telnet command to check # telnet IP_Address port. Also, run tracert to check the SPF and latency of the website.
 Check whether FQDN is resolving by the DNS server with # nslookup IP_Address. Most of the time the DNS server will find the culprit and resolve the FQDN hostname.
 Check the server for slow performance, or whether it’s running out of CPU, RAM, and Disk with the ‘top’ command.
+
+## 3. What is the difference between a full, incremental and differential (cumulative differential) backup and why/when would you use them?
+
+Full back up - complete copy of the entire data. Provide the biggest protection, but require most time and disk space
+
+Incremental back up - the time optimised alternative to a full back up. Only back up the files that have been changed since the last back up. Quicker to write, but time consuming to restore, need to start from the data point and go to the desired time point in sequential manner. 
+
+Differential back up - 
+
 
 4. How do you find out more information on Linux commands?
 Use the unix terminal man command to find out more about different functions and their option flags. 
