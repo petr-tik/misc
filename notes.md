@@ -11,7 +11,7 @@ all - include inclusive OR of table columns. Some RDBMS only support LEFT OUTER 
 
 ## What are stored procedures? How are they used and when are they good and bad?
 
-Stored procedures are subroutines stored in Relational Database Management Systems are used to save and exposes a frequently used set of quieries for a wide set of customers. The advantages include giving API endpoints and/or access rights to different people across the organisation. 
+Stored procedures are subroutines stored in Relational Database Management Systems are used to save and exposes a frequently used set of queries for a wide set of customers. The advantages include giving API endpoints and/or access rights to different people across the organisation. 
 
 Precompilation and being stored in the database engine minimises overhead and network traffic respectively. The business advantages include: verbalising frequently used business logic for which you can provide an API endpoint and giving access rights to such procedures and/or endpoints for users, who, otherwise, have no access rights to the database. 
 
