@@ -54,13 +54,30 @@ gives information in human readable form
 
 ## 2. Troubleshoot network connectivity
 
-Windows and linux 
-Linux - run a telnet test
+Run a telnet test to troubleshoot network connectivity. With telnet you can specify the exact server IP address and the port you want to connect to. The default port is 23 (TCP port) using the following command:
+
+telnet <ipadrress> <port>
+
+Test 3 parameters:
+    From Remote PC to target server
+    From target server to other servers
+    From different server on same network to target server
+
+Use the same command as Linux, but look out for different outcomes 
+
+### If successful connection:
+Linux - prints Connected message to stdout
+Windows - blank screen
+
+### Refused connection (no application running or firewall):
+Linux - Connection refused message
+Windows - Connect failed
 
 
-Verify the website status with the telnet command to check # telnet IP_Address port. Also, run tracert to check the SPF and latency of the website.
-Check whether FQDN is resolving by the DNS server with # nslookup IP_Address. Most of the time the DNS server will find the culprit and resolve the FQDN hostname.
-Check the server for slow performance, or whether it’s running out of CPU, RAM, and Disk with the ‘top’ command.
+### Hanging or timed out connection (firewall blocking connection):
+Linux - Trying <ipadrress>....
+Windows - Connecting To <ipadrress>....
+
 
 ## 3. What is the difference between a full, incremental and differential (cumulative differential) backup and why/when would you use them?
 
