@@ -1,4 +1,4 @@
-What is the difference between an inner join and an outer join?
+## What is the difference between an inner join and an outer join?
 
 An inner join produces an intersection of the 2 tables, only the rows they both have in common. Usually the default type of join in most RDBMSs. 
 Similar to an intersection of 2 Sets on a Venn Diagram
@@ -9,7 +9,7 @@ left will include all rows of the first table and common rows from the second,
 right will include all rows of the second table and only common rows from the first, 
 all - include inclusive OR of table columns. Some RDBMS only support LEFT OUTER JOINS, without any support for Right or Full outer joins. 
 
-## Stored procedures
+## What are stored procedures? How are they used and when are they good and bad?
 
 Stored procedures are subroutines stored in Relational Database Management Systems are used to save and exposes a frequently used set of quieries for a wide set of customers. The advantages include giving API endpoints and/or access rights to different people across the organisation. 
 
@@ -20,7 +20,7 @@ The disadvantages are mostly related to tooling, vendor lock-in and difficulty i
 When migrating to a different system a script needs to pull out all stored procedures and translate them to the new DSL (if different) manually, test them against the results of previous database QL and save it in the new database engine. 
 
 
-## Temporary tables
+## What are temporary tables? How are they used and when are they good and bad?
 
 Temporary tables is a feature in some RDBMS to store and process intermediate results of selection, update and join operations on usual SQL tables. They are started and terminated with each database connection and are not stored on server like stored procedures.
 
@@ -33,7 +33,6 @@ Temporary tables are an exploratory tool, which disallows the user to update the
 A transaction log inside a RDBMS is a linked-list like plaintext file that records changes to the database, which might need to be reviewed in case of crashes and/or hardware failures. Due to SQL design and ACID compliance transaction log is a compulsory part of most RDBMS with different implementation. PostgreSQL postmaster spins up a different process for write-ahead logging (WAL), which only changes data files after the upcoming changes have been logged. Even if a transaction fails, the logs have already recorded what was going to happen, so a playback can be started.
 
 Transaction logs are important, because they keep enough information to track and undo database changes in chronological order. This, combined with the db data file, allows rolling back and recovering back to any recorded state of the database. 
-
 
 ## What is an index? How are they used and why are they important? 
 
@@ -65,16 +64,17 @@ Check the server for slow performance, or whether it’s running out of CPU, RAM
 
 Full back up - complete copy of the entire data. Provide the biggest protection, but require most time and disk space
 
-Incremental back up - the time optimised alternative to a full back up. Only back up the files that have been changed since the last back up. Quicker to write, but time consuming to restore, need to start from the data point and go to the desired time point in sequential manner. 
+Incremental back up - the time optimised alternative to a full back up. Only back up the files that have been changed since the last back up (full or partial). Quicker and less data to write, which gives time precision and granularity and makes it time consuming to restore, need to start from the data point and go to the desired time point in sequential manner. 
 
-Differential back up - 
+Differential back up - A differential backup backs up only the files that changed since the last full back. This writes more data per backup than an incremental method, but makes restores possible from 2 data points: last full backup + a differential backup between day X and the last full back up.  
 
 
-4. How do you find out more information on Linux commands?
-Use the unix terminal man command to find out more about different functions and their option flags. 
+## 4. How do you find out more information on Linux commands?
 
 in terminal:
 man <command> for the full page
+<command> --help  - provides a cheat sheet of different flag options
+
 eg. 
 man man gives you information about the man command
 or 
