@@ -36,7 +36,9 @@ Transaction logs are important, because they keep enough information to track an
 
 ## What is an index? How are they used and why are they important? 
 
+A database index is a data structure that improves the speed of data retrieval operations on a database table but takes up additional writes and storage space to maintain the index record. 
 
+You can sort a number of records on multiple fields with a precomputed index. Creating an index on a field in a table creates another data structure which holds the field value, and pointer to the record it relates to. This index structure is then sorted, allowing searching over it and retrieve records in less time. They are an important way to speed up frequent retrieval operations, when the number of writes and disk space the index takes up is compensated by the speed increase. 
 
 Systems Qs
 
