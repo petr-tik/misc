@@ -36,3 +36,23 @@ def tree_swapper(node):
         tree_swapper(Node.left_child)
     if Node.right_child not None:
         tree_swapper(Node.right_child)
+
+
+
+############## BINARY SEARCH TREE ########
+## Binary search tree
+# binary search O(log N)
+# binary search tree - tree structure where: 
+# left child of X is less than X 
+# right child of X is greater than X
+
+#           5
+#       3            10
+#    1     4      8      15
+
+# Given a BST and lower/upper bounds return another tree with numbers only inside those bounds
+#         5
+#     4      10
+#           8
+# 8, 9
+#       8
