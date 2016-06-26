@@ -12,9 +12,9 @@ def parse(string):
     # when a closed bracket comes in, check if the top of the stack is its counterpart
     # if so, pop it off, else return False
 
-    closed_brackets = ['}', ']', ')']
+    closed_brackets = ['}', ']', ')', '>']
     open_brackets = ['{', '(', '[']
-    counterparts = {'}':'{', ']':'[', ')':'('}
+    counterparts = {'}':'{', ']':'[', ')':'(', '>':'<'}
     stack = []    
     for idx, char in enumerate(string):
         if char in closed_brackets and not stack:
