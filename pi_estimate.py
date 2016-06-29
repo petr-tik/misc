@@ -17,8 +17,18 @@ def solve(N):
         x, y = xy_gen()
         if sqrt(x**2 + y**2) <= 1.0:
             inside += 1
-
+"""
+    Area of the square = 1 
+    area of the 1/4 square = pi*r^2/4
+    when we generate a random pair of coordinates, 
+    the probability of hitting the inside of the 1/4 circle is
+    P(inside) = pi*r^2/4, where r = 1
+    P(inside) = pi/4
+    
+    to estimate, pi count the number of times they land on the inside, 
+    divide it by the number of points and multiply by 4
+    
     return 4*(inside/float(N))
-
+"""
 
 print solve(50)
