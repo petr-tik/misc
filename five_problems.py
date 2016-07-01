@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import random as rnd
-from itertools import combinations_with_replacement
+from itertools import combinations_with_replacement, combinations
 
 
 """
@@ -231,7 +231,8 @@ class problem_five(object):
 
 	def combs(self):
 		# makes a list: len 3**8 with all possible combinations of -, + and join
-		combs = [x for x in combinations_with_replacement(['m', 'p', 'j'], 8)]
+		combs = [x for x in combinations_with_replacement(['-', '+', '_'], 8)]
+		return combs
 
 
 	def insert(self, sign_combo):
@@ -239,10 +240,12 @@ class problem_five(object):
 
 
 
-	def calc(self):
+	def calc(self, numbers, symbols):
 		# takes a list of sign combinations and range(1,10) 
 		# insert signs, join the numbers and calcuate the result
-		
+		res = 0
+		for symbol_idx in xrange(1, 16, 2):
+			pass
 
 		pass		
 
@@ -256,3 +259,7 @@ class problem_five(object):
 				#res.append()
 
 		print res
+
+print "##########################\n\nProblem 5\n\n"
+five = problem_five()
+print five.combs()
