@@ -13,7 +13,7 @@ def parse(string):
     # if so, pop it off, else return False
 
     closed_brackets = ['}', ']', ')', '>']
-    open_brackets = ['{', '(', '[']
+    open_brackets = ['{', '(', '[', '<']
     counterparts = {'}':'{', ']':'[', ')':'(', '>':'<'}
     stack = []    
     for idx, char in enumerate(string):
