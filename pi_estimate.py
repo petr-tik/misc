@@ -11,16 +11,19 @@ def xy_gen():
 
 def solve(N):
     """Given a number N, run N,generators of x,y coordinates, 
-    plot them on the graph and and count how many are inside the circle"""
-    """
+    plot them on the graph and and count how many are inside the circle
+
     Area of the square = 1 
     area of the 1/4 square = pi*r^2/4
     when we generate a random pair of coordinates, 
     the probability of hitting the inside of the 1/4 circle is
     P(inside) = pi*r^2/4, where r = 1
     P(inside) = pi/4
-    
-    to estimate, pi count the number of times they land on the inside, 
+    pi = 4*P(inside)
+
+    from the sample of x,y coordinates P(inside) = number of points inside the circle/all points 
+
+    to estimate, pi count the number of times they land inside the 1/4 circle, 
     divide it by the number of points and multiply by 4
     
     return 4*(inside/float(N))
