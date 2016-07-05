@@ -45,7 +45,6 @@ def solve(string, length):
     # given a string, start looking for relevant substrings, 
     # as soon as you find one, output its length
     char_dict, need_to_find, abs_min_length = analyse(string, length)
-    
     has_found = {'A': 0, 'G': 0, 'C': 0, 'T':0}
     min_substring_length = length + 1
     counter = 0
@@ -78,10 +77,10 @@ def solve(string, length):
                 
 print solve('TGATGCCGTCCCCTCAACTTGAGTGCTCCTAATGCGTTGC', 40)
 print solve('TTTT', 4)
-
+print solve('GAAATAAA', 8)
 
 # HackerRank boilerplate
-"""length = int(raw_input())
-string = raw_input()
-print solve(string, length)
-"""
+# length = int(raw_input())
+# string = raw_input()
+# print solve(string, length)
+
