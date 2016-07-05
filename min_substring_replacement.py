@@ -11,13 +11,15 @@
 # go through the string again with begin and start pointers. When you find all the missing chars, mark the end pointer to the last char and record the overall length of the window 
 # try to move the start pointer as far left as possible. Go through the rest of BigString looking to move the start pointer as far right as possible. 
 
-def is_steady(char_dict, length):      
-    # takes a dict of chars from string and returns True if already steady        
-    if any(len(char_dict[key]) != length/4 for key in char_dict):     
-        return False      
-    return True
 
 def analyse(string, length):
+    """Takes a string and its length 
+    and returns 
+        the dictionary of characters
+        the dictionary of chars to find 
+        absolute minimum length of a substring to be replaced
+    """
+
     abs_min_length = 0
     char_dict = {'A': 0, 'G': 0, 'C': 0, 'T':0}
     
