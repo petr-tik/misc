@@ -12,15 +12,23 @@ for _ in xrange(T):
 """
 
 def max_to_end(L):
+    """ Given a list of ints 
+ints =         [91,  76,  63,  125, 148, 40,  43,  186, 108, 123] 
+max_from_pos = [186, 186, 186, 186, 186, 186, 186, 186, 123, 123]
+
+returns a list of values, where max_from_pos[i] is the greatest int from index i to the end of the array
+
+"""
     temp_max = L[-1]
     output_list = []
-    output_list.append(temp_max)
+    output_list.append(temp_max) 
+    # appended from the end, so needs reversing
     for idx in xrange(len(L) - 2, -1, -1):
         if L[idx] > temp_max:
             temp_max = L[idx]
         output_list.append(temp_max)
 
-    return output_list[::-1]
+    return output_list[::-1] # reversed as per comment above
 
 
 def maximise_profit(datapoints, max_values):
@@ -44,4 +52,5 @@ def maximise_profit(datapoints, max_values):
 
 for x in xrange(5):
     datapoints = [random.randint(1,200) for x in xrange(10)]
+    print datapoints, max_to_end(datapoints)
     maximise_profit(datapoints, max_to_end(datapoints))
