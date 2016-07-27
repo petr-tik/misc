@@ -13,12 +13,11 @@ for _ in xrange(T):
 
 def max_to_end(L):
     """ Given a list of ints 
-ints =         [91,  76,  63,  125, 148, 40,  43,  186, 108, 123] 
-max_from_pos = [186, 186, 186, 186, 186, 186, 186, 186, 123, 123]
+    ints =         [91,  76,  63,  125, 148, 40,  43,  186, 108, 123] 
+    max_from_pos = [186, 186, 186, 186, 186, 186, 186, 186, 123, 123]
 
-returns a list of values, where max_from_pos[i] is the greatest int from index i to the end of the array
-
-"""
+    returns a list of values, where max_from_pos[i] is the greatest int from index i to the end of the array
+    """
     temp_max = L[-1]
     output_list = []
     output_list.append(temp_max) 
@@ -32,6 +31,13 @@ returns a list of values, where max_from_pos[i] is the greatest int from index i
 
 
 def maximise_profit(datapoints, max_values):
+    """ Givent the datapoints and max_values from index i to end, return balance
+    The key is: 
+         if price available now isn't the maximum between now and end - buy 1 share
+         if price available now is the maximum - sell all. 
+
+    You NEVER sell just 1 share, if you sell, sell them all
+    """
     print "Starting with {}".format(datapoints)
     balance = 0
     shares_bought = 0
