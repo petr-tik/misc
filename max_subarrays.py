@@ -2,11 +2,13 @@
 
 # https://www.hackerrank.com/challenges/maxsubarray
 
+import unittest
+
 MAX_INT_VALUE = 1000
 
 """ 
 Given an array of ints between -MAX_VALUE < int < MAX_VALUE 
-return the sum of maximum contiguous and non-contiguous array
+return the sum of maximum contiguous and non-contiguous subarrays
 """
 
 def max_cont(arr, res):
@@ -17,6 +19,8 @@ def max_cont(arr, res):
     [-3, -1, -5]         returns -1
     [2, -1, 2, 3, 4, -5] returns 10
     [6, -7, 2, 3, 4, -5] returns 9
+    [6, -7, 2, 3, -5]    returns 6
+
     """
     if not arr:
         return res
@@ -60,6 +64,36 @@ def solve(arr):
     return max_cont_sum, max_non_cont(arr)
 
 # print solve([2, -1, 2, 3, 4, -5])
-print max_cont([-1, -5], -3)
-print max_cont([-3, -1, -5], -6)
 
+
+class TestSolve(unittest.TestCase):
+    def setUp(self):
+        self.arr1 = [2, 6, -9]
+        self.arr2 = [-3, -1, -5]
+        self.arr3 = [2, -1, 2, 3, 4, -5]
+        self.arr4 = [6, -7, 2, 3, 4, -5]
+        self.arr5 = [6, -7, 2, 3, -5]
+
+
+    def test_max_cont1(self):
+        self.assertEqual(8, max_cont(self.arr1, 0))
+
+    def test_max_cont2(self):
+        self.assertEqual(-1, max_cont(self.arr2, 0))
+
+    def test_max_cont3(self):
+        self.assertEqual(10, max_cont(self.arr3, 0))
+                         
+    def test_max_cont4(self):
+        self.assertEqual(9, max_cont(self.arr4, 0))
+
+    def test_max_cont5(self):
+        self.assertEqual(6, max_cont(self.arr5, 0))
+
+
+if __name__ == '__main__':
+    print max_cont([-1, -5], -3)
+    print max_cont([-3, -1, -5], -6)
+    
+    # unittest.main()
+    
