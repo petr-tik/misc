@@ -3,6 +3,7 @@
 # https://www.hackerrank.com/challenges/jesse-and-cookies/
 
 import random as rnd
+import heapq
 
 class Node(object):
     def __init__(self, value, left_c=None, right_c=None):
@@ -64,3 +65,27 @@ def solve():
 
     
 print solve()    
+
+
+
+######### reduce method
+from heapq import heapify, nsmallest, heappush, heappop
+
+
+def solve_with_reduce():
+    _, UPPER_LIMIT = map(int, raw_input().split())
+    heap = map(int, raw_input().split())
+    counter = 0
+    heapify(heap)
+    while heap[0] < UPPER_LIMIT and len(heap) > 1:
+        first_val = heappop(heap)
+        second_val = heappop(heap)
+        val_to_push = reduce(lambda x,y: x+2*y, [first_val, second_val])
+        # make and push a new value onto the heap
+        heappush(heap, val_to_push)
+        counter += 1
+
+    return counter
+
+
+print solve_with_reduce()
