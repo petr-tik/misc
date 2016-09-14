@@ -7,14 +7,14 @@ https://www.reddit.com/r/dailyprogrammer/comments/5196fi/20160905_challenge_282_
 
 Fibbonacci base is when instead of binary the 1 or 0 shows how many times you take the fib number of this index
 
-dec 8 = 1 0 1 1 0 in fib
+dec 8 = 10110 in fib
 
 Write a converter that takes base (dec or fib) and returns the number in the other base
 
 """
 
 def fib(n):
-    """ Given a number, generate a fibonacci sequence of length n"""
+    """ Given a number, generate a fibonacci sequence of length n with the greatest element at the front"""
     ret = [0, 1, 1]
     if n <= 3:
         return ret[:n]
