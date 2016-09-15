@@ -24,9 +24,12 @@ def fib(n):
         counter += 1
     return ret[::-1]
 
-def dec_to_fib(num):
-    pass
 
+def fib_gen():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
 
 def fib_to_dec(num):
     """Takes a string in fibonacci base in form 100010 and converts it to decimal value """
