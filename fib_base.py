@@ -25,7 +25,7 @@ def fib(n):
     return ret[::-1]
 
 
-def fib_gen():
+def fib_generator():
     a, b = 0, 1
     while True:
         yield a
@@ -40,6 +40,15 @@ def fib_to_dec(num):
         res += int(item) * fib_seq[idx]
 
     return res
+
+
+def dec_to_fib(num):
+    """ Takes a decimal number (type int) and returns a string with its Fibonacci base representation.
+    Method: generate fibonacci numbers until 
+ """
+    fib_gen = fib_generator()
+    while fib_gen.next() < num:
+        pass
 
 
 def convert(num, base_in, base_out):
