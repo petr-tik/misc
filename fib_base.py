@@ -41,14 +41,35 @@ def fib_to_dec(num):
 
     return res
 
+def helper(num, fib_values, digits):
+    """ Helper function for dec_to_fib. 
+    Takes: 
+    the number we need to convert to fib_base, 
+    values of fibonacci sequence relevant to the number (less than or equal to) 
+    the array of digits 
+
+    Returns 
+"""
+    if num in fib_values:
+        digits[fib_values.index(num)] = 1
+
+    
+    return digits
 
 def dec_to_fib(num):
     """ Takes a decimal number (type int) and returns a string with its Fibonacci base representation.
     Method: generate fibonacci numbers until 
  """
     fib_gen = fib_generator()
-    while fib_gen.next() < num:
-        pass
+    fib_values = []
+    fib_num = fib_gen.next()
+    while fib_num <= num:
+        fib_values.append(fib_num)
+        fib_num = fib_gen.next()
+
+    fib_values.reverse() # turns it into human maths (left to right)
+    digits = [0 for x in fib_values]
+
 
 
 def convert(num, base_in, base_out):
@@ -64,3 +85,4 @@ def solve():
 print fib(2)
 print fib(8)
 print fib_to_dec("1000000000")
+print dec_to_fib(21)
