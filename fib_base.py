@@ -75,7 +75,9 @@ def dec_to_fib(num):
 def convert(num, base_in, base_out):
     """ Given a number and its base, return the number in base_out """
     if base_in == "fib" and base_out == "dec":
-        pass
+        print fib_to_dec(num)
+    elif base_in == "dec" and base_out == "fib":
+        print dec_to_fib(num)
         
 
 def solve():
