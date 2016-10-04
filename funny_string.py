@@ -5,6 +5,10 @@ import string
 # https://www.hackerrank.com/challenges/funny-string
 
 def substract_letters(letter1, letter2):
+    """Given 2 letters, returns the distance absolute between them 
+    ==> substract_letters("a", "z")
+    ==> 25
+    """
     alph = string.lowercase
     idx1 = alph.index(letter1)
     idx2 = alph.index(letter2)
@@ -12,7 +16,7 @@ def substract_letters(letter1, letter2):
 
 
 def is_funny(s):
-    # given a string 
+    """ Given a string, return if it's funny or not"""
     reverse = s[::-1]
     length = len(s)
     for idx in xrange(1, length):
