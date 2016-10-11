@@ -3,6 +3,12 @@
 # https://www.hackerrank.com/contests/may-world-codesprint/challenges/richie-rich
 
 def local_maximise(number, length):
+    """ Function that takes number and its length and 
+        returns 
+            the int for how many values needed to change
+            res (as array of digits)
+            array of indices where the number has been changed
+    """
     is_changed = [False for _ in number]
     res = [digit for digit in number]
     subs_needed = 0
@@ -19,6 +25,10 @@ def local_maximise(number, length):
     return subs_needed, res, is_changed 
 
 def abs_maximise(subs_needed, res, is_changed, K, length):
+    """ Uses local_maximise output 
+        (subs_needed, res, is_changed and input K (number of changes allowed) 
+        to maximise the number    
+    """
     for idx in xrange(0, length):
         end_idx = length - idx - 1
         # if the number has odd number of digits, deal with the middle number
@@ -30,11 +40,13 @@ def abs_maximise(subs_needed, res, is_changed, K, length):
                 subs_needed += 1
 
         else:
-            if res[idx] == '9':
+            if res[idx] == '9': # max abs value
                 continue
             else:
+                # if we still have subs and if either of the numbers has already been changed
                 if K - subs_needed > 1 and (is_changed[idx] or is_changed[end_idx]):
                     res[idx] = res[end_idx] = '9'
+                    # set them both to 9 (max digit) - it will count as 1 change
     return res
 
 
