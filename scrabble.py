@@ -32,6 +32,23 @@ with open('/../../usr/share/dict/words') as f:
     DICTIONARY = [x.lower() for x in f.read().splitlines()]
     # print DICTIONARY
 
+EMPTY_BOARD = [['3w', '1l', '1l', '2l', '1l', '1l', '1l',
+                '3w', '1l', '1l', '1l', '2l', '1l', '1l', '3w'],
+               ['1l', '2w', '1l', '1l', '1l', '3l', '1l',
+                '1l', '1l', '3l', '1l', '1l', '1l', '2w', '1l'],
+               ['1l', '1l', '2w', '1l', '1l', '1l', '2l',
+                '1l', '2l', '1l', '1l', '1l', '2w', '1l', '1l'],
+               ['2l', '1l', '1l', '2w', '1l', '1l', '1l',
+                '2l', '1l', '1l', '1l', '2w', '1l', '1l', '2l'],
+               ['1l', '1l', '1l', '1l', '2w', '1l', '1l',
+                '1l', '1l', '1l', '2w', '1l', '1l', '1l', '1l'],
+               ['1l', '3l', '1l', '1l', '1l', '3l', '1l',
+                '1l', '1l', '3l', '1l', '1l', '1l', '3l', '1l'],
+               ['1l', '1l', '2l', '1l', '1l', '1l', '2l',
+                '1l', '2l', '1l', '1l', '1l', '2l', '1l', '1l'],
+               ['3w', '1l', '1l', '2l', '1l', '1l', '1l',
+                '2w', '1l', '1l', '1l', '2l', '1l', '1l', '3w']]
+
 
 def generate_letters(num):
     """ Given an int, return a list of num random letters """
@@ -40,15 +57,15 @@ def generate_letters(num):
 
 
 def word_score(word):
-    """ Given a word, return points it will score letter by letter """
+    """ Given a word, return a list of tuples in form (letter, score) """
     scores = {'a': 1, 'e': 1, 'i': 1, 'o': 1, 'u': 1, 'l': 1,
               'n': 1, 's': 1, 't': 1, 'r': 1, 'd': 2, 'g': 2,
               'b': 3, 'c': 3, 'm': 3, 'p': 3, 'f': 4, 'h': 4,
               'v': 4, 'w': 4, 'y': 4, 'k': 5, 'j': 8, 'x': 8,
               'q': 10, 'z': 10}
-    res = 0
+    res = []
     for letter in word:
-        res += scores[letter]
+        res.append((letter, scores[letter]))
     return res
 
 
