@@ -96,3 +96,16 @@ print score_words(x)
         
 
 
+class TestScrabble(unittest.TestCase):
+
+    def test_word_score(self):
+        self.assertEqual(17, word_score('amazon'))
+
+    def test_word_score2(self):
+        self.assertEqual(13, word_score('kremlin'))
+
+    def test_word_score3(self):
+        self.assertEqual(10, word_score('bridge'))
+
+if __name__ == '__main__':
+    unittest.main(verbosity=10)
