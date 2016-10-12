@@ -1,7 +1,10 @@
 #! /usr/bin/env/ python
 
 import os
-from itertools import permutations
+from itertools import permutations, combinations
+import string
+import random as rnd
+import unittest
 
 """ 
 Original Problem:
@@ -26,10 +29,27 @@ Try all possible placements on an empty scrabble board, keep max_value, return t
 """     
 
 with open('/../../usr/share/dict/words') as f:
-    DICTIONARY = f.read().splitlines()
+    DICTIONARY = [x.lower() for x in f.read().splitlines()]
+    #print DICTIONARY
 
+def generate_letters(num):
+    """ Given an int, return a list of num random letters """
+    alph = string.lowercase
+    return [rnd.choice(alph) for _ in xrange(num)]
 
-def generate_legit_words(letters, ref_dict):
+def word_score(word):
+    """ Given a word, return points it will score letter by letter """
+    scores = {'a': 1, 'e': 1, 'i': 1, 'o': 1, 'u': 1, 'l': 1, 
+              'n': 1, 's': 1, 't': 1, 'r': 1, 'd': 2, 'g': 2, 
+              'b': 3, 'c': 3, 'm': 3, 'p': 3, 'f': 4, 'h': 4, 
+              'v': 4, 'w': 4, 'y': 4, 'k': 5, 'j': 8, 'x': 8, 
+              'q': 10, 'z': 10}
+    res = 0
+    for letter in word:
+        res += scores[letter]
+    return res
+
+def generate_legit_words(letters, ref_dict=DICTIONARY):
     """ 
     Given an array of chars for letters and a reference dictionary, 
     return a list (could be empty) of words that can be made of these letters 
@@ -41,13 +61,33 @@ def generate_legit_words(letters, ref_dict):
 
     """
     words = []
-    for length in xrange(2,len(letters)):
-        words.extend((''.join(x) for x in permutations(letters, length)))
+    for length in xrange(2, len(letters) + 1):
+        cand_words = [''.join(x) for x in permutations(letters, length)]
+        #print cand_words
+        for word in cand_words:
+            if word in ref_dict and word not in words:
+                words.append(word)
 
     return words
 
+def score_words(legit_words):
+    """ Given a list of legit words (in the dict), 
+    return a list of tuples of the form (word_string, word_score)
+    """
+    words_with_scores = []
+    for word in legit_words:
+        words_with_scores.append((word, word_score(word)))
 
-print generate_legit_words(['y', 'a', 'd'], DICTIONARY)
+    return words_with_scores
+    
+
+x = generate_legit_words(['q', 'u', 'e', 'e', 'u'])
+print score_words(x)
+
+
+
+
+#print generate_legit_words(generate_letters(6), DICTIONARY)
 
 
 ##class Scrabble(object):
