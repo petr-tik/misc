@@ -32,6 +32,13 @@ with open('/../../usr/share/dict/words') as f:
     DICTIONARY = [x.lower() for x in f.read().splitlines()]
     # print DICTIONARY
 
+# Scrabble board consists of 8 arrays, 
+# 7 which repeat themselves as 2 rows and 2 columns
+# 1 repeats as just row and column
+# each cell is defined as multiplier (int) 
+# and category (word or letter multiplier)
+# Each cell string qualifier is unpacked in the evaluator function
+
 EMPTY_BOARD = [['3w', '1l', '1l', '2l', '1l', '1l', '1l',
                 '3w', '1l', '1l', '1l', '2l', '1l', '1l', '3w'],
                ['1l', '2w', '1l', '1l', '1l', '3l', '1l',
@@ -71,14 +78,14 @@ def word_score(word):
 
 def generate_legit_words(letters, ref_dict=DICTIONARY):
     """
-    Given an array of chars for letters and a reference dictionary,
+    Given an array of chars for letters 
+    and a reference dictionary (default = English dictionary from unix),
     return a list (could be empty) of words that can be made of these letters
 
     Brute force: generate all permutations of letters, check which ones are in the
     dictionary
 
     Optimal:
-
     """
     words = []
     for length in xrange(2, len(letters) + 1):
