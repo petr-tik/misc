@@ -60,28 +60,21 @@ EMPTY_BOARD = [['3w', '1l', '1l', '2l', '1l', '1l', '1l',
                 '2w', '1l', '1l', '1l', '2l', '1l', '1l', '3w']]
 
 
+def my_and(x, y):
+    return x & y
+
+ROW_LENGTH = reduce(my_and, [len(row) for row in EMPTY_BOARD])
+
+
 def generate_letters(num):
     """ Given an int, return a list of num random letters """
     alph = string.lowercase
     return [rnd.choice(alph) for _ in xrange(num)]
 
 
-def word_score(word):
-    """ Given a word, return a list of tuples in form (letter, score) """
-    scores = {'a': 1, 'e': 1, 'i': 1, 'o': 1, 'u': 1, 'l': 1,
-              'n': 1, 's': 1, 't': 1, 'r': 1, 'd': 2, 'g': 2,
-              'b': 3, 'c': 3, 'm': 3, 'p': 3, 'f': 4, 'h': 4,
-              'v': 4, 'w': 4, 'y': 4, 'k': 5, 'j': 8, 'x': 8,
-              'q': 10, 'z': 10}
-    res = []
-    for letter in word:
-        res.append((letter, scores[letter]))
-    return res
-
-
 def generate_legit_words(letters, ref_dict=DICTIONARY):
     """
-    Given an array of chars for letters 
+    Given an array of chars for letters
     and a reference dictionary (default = English dictionary from unix),
     return a list (could be empty) of words that can be made of these letters
 
@@ -158,30 +151,23 @@ def find_max_word_and_score(words, board_state=EMPTY_BOARD):
 
 class TestScrabble(unittest.TestCase):
 
-    def test_word_score(self):
-        pass
-        # self.assertEqual(17, word_score('amazon'))
+    def test_queue_is_72(self):
+        self.assertEqual(72, max_score_on_board("queue"))
 
     def test_word_score2(self):
         pass
-        # self.assertEqual(13, word_score('kremlin'))
 
     def test_word_score3(self):
         pass
-        # self.assertEqual(10, word_score('bridge'))
 
     def test_strip_equals_word_len(self):
         pass
 
-# print generate_legit_words(generate_letters(6), DICTIONARY)
-
-
-# class Scrabble(object):
-# def __init__(self):
 
 if __name__ == '__main__':
-    rand_letters = generate_letters(8)
-    print rand_letters
-    x = find_max_word_and_score(generate_legit_words(rand_letters))
-    print x
-    # unittest.main(verbosity=10)
+    for _ in xrange(5):
+        rand_letters = generate_letters(6)
+        print rand_letters
+        x = find_max_word_and_score(generate_legit_words(rand_letters))
+        print x
+    unittest.main(verbosity=10)
