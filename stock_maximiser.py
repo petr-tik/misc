@@ -9,11 +9,12 @@ T = int(raw_input())
 for _ in xrange(T):
     number = int(raw_input())
     datapoints = [int(x) for x in raw_input().split()]
+    print maximise_profit(datapoints, max_to_end(datapoints))
 """
 
 def max_to_end(L):
     """ Given a list of ints 
-    ints =         [91,  76,  63,  125, 148, 40,  43,  186, 108, 123] 
+    prices =       [91,  76,  63,  125, 148, 40,  43,  186, 108, 123] 
     max_from_pos = [186, 186, 186, 186, 186, 186, 186, 186, 123, 123]
 
     returns a list of values, where max_from_pos[i] is the greatest int from index i to the end of the array
@@ -43,20 +44,20 @@ def maximise_profit(datapoints, max_values):
     shares_bought = 0
     for idx, price in enumerate(datapoints):
         if price >= max_values[idx]:
-            balance += shares_bought*price
             print "Selling {} shares for {}".format(shares_bought, price)
-            shares_bought = 0
+            balance += shares_bought*price
+            shares_bought = 0 # sold all shares
         else:
+            print "Buying one share for {}".format(price)
             balance -= price
             shares_bought += 1
-            print "Buying one share for {}".format(price)
 
         print "Given the array {} the balance is {}".format(datapoints[:idx+1], balance)
 
-    print balance
+    return balance
 
 
 for x in xrange(5):
     datapoints = [random.randint(1,200) for x in xrange(10)]
     print datapoints, max_to_end(datapoints)
-    maximise_profit(datapoints, max_to_end(datapoints))
+    print maximise_profit(datapoints, max_to_end(datapoints))
