@@ -66,6 +66,8 @@ def my_and(x, y):
 ROW_LENGTH = reduce(my_and, [len(row) for row in EMPTY_BOARD])
 
 
+# brute force words generation
+
 def generate_letters(num):
     """ Given an int, return a list of num random letters """
     alph = string.lowercase
@@ -94,6 +96,64 @@ def generate_legit_words(letters, ref_dict=DICTIONARY):
     return words
 
 
+# 2nd idea - implement dfs for words in dictionary
+# with given letters (like a stack in dfs)
+
+def dict_from_seq(seq):
+    """ Given a sequence (array or string) of alphabetic chars,
+    return a hashmap/dict of chars and counts
+    """
+    hashmap = {}
+    for item in seq:
+        if item not in hashmap:
+            hashmap[item] = 0
+        hashmap[item] += 1
+    return hashmap
+
+
+def dfs_in_dict(letters, ref_dict, words_so_far=[]):
+    """ Given letters, a dictionary and (optionally) an array of words,
+    search for words you can make from letters.
+    Use Depth-First search-like idea:
+    First, find all words with 1st letter, then in the subset words with the 2nd
+    letters, after that check if >3 letters (2 old, 1 new)
+    make a word in the dictionary.
+    If so, add it to the words_so_far array,
+    if no words contain the letters,
+    drop the last letter you added and try with the next one
+
+    """
+    search_space = []
+    letters_so_far = []
+    for idx, letter in enumerate(letters):
+        print words_so_far
+        letters_so_far.append(letter)
+        if not search_space:
+            search_space = [w for w in ref_dict if letter in w]
+        else:
+            search_space = [w for w in search_space if letter in w]
+        words_from_letters = [w for w in search_space if dict_from_seq(
+            w) == dict_from_seq(letters_so_far)]
+        if idx >= 3 and words_from_letters:
+            for word in words_from_letters:
+                if word not in words_so_far:
+                    words_so_far.append(word)
+    return words_so_far
+
+
+def generate_words_from_dfs(letters, ref_dict=DICTIONARY):
+    return dfs_in_dict(letters, ref_dict)
+
+
+print generate_words_from_dfs(['a', 'm', 'a', 'z', 'o', 'n'])
+
+print generate_legit_words(['a', 'm', 'a', 'z', 'o', 'n'])
+
+# Scoring - also brute force
+# scoring word on given strip of board
+# calculating the max score for a word on a board in a state (default=empty)
+
+
 def score_word_on_strip(word, board_strip):
     """
     Given a word and an equal-length strip of board,
@@ -115,9 +175,6 @@ def score_word_on_strip(word, board_strip):
             letter_mult = int(cell[0])
             letters_running_total += letter_mult * letter_value
     return word_mult * letters_running_total
-
-
-# print score_word_on_strip(word_score("amazon"), EMPTY_BOARD[0][:5])
 
 
 def max_score_on_board(word, board_state=EMPTY_BOARD):
