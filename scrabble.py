@@ -16,7 +16,6 @@ return the best-scoring word on a scrabble board.
 Harder Problem:
 Given a partially filled-in scrabble board, return the best-scoring word
 """
-
 """
 Solution idea:
 2 problems:
@@ -194,6 +193,9 @@ def max_score_on_board(word, board_state=EMPTY_BOARD):
 
 
 def find_max_word_and_score(words, board_state=EMPTY_BOARD):
+    """ Given an array of words and a board state (default = empty) 
+    return a tuple of word and its score for the highest scoring word 
+    on such a board layout """
     print words
     max_value = -1
     max_word = ""
@@ -208,14 +210,8 @@ def find_max_word_and_score(words, board_state=EMPTY_BOARD):
 
 class TestScrabble(unittest.TestCase):
 
-    def test_queue_is_72(self):
+    def test_queue_is_72_on_empty(self):
         self.assertEqual(72, max_score_on_board("queue"))
-
-    def test_word_score2(self):
-        pass
-
-    def test_word_score3(self):
-        pass
 
     def test_strip_equals_word_len(self):
         pass
