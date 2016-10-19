@@ -135,7 +135,7 @@ def dfs_in_dict(letters, ref_dict, words_so_far=set()):
                 if dict_from_seq(w) == dict_from_seq(letters_so_far)]
         if idx >= 3 and words_from_letters:
             for word in words_from_letters:
-                words_so_far.append(word)
+                words_so_far.add(word)
     return words_so_far
 
 
