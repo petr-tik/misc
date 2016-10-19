@@ -65,15 +65,15 @@ def my_and(x, y):
 ROW_LENGTH = reduce(my_and, [len(row) for row in EMPTY_BOARD])
 
 
-# brute force words generation
-
 def generate_letters(num):
     """ Given an int, return a list of num random letters """
     alph = string.lowercase
     return [rnd.choice(alph) for _ in xrange(num)]
 
 
-def generate_legit_words(letters, ref_dict=DICTIONARY):
+# brute force words generation
+
+def generate_words_brute(letters, ref_dict=DICTIONARY):
     """
     Given an array of chars for letters
     and a reference dictionary (default = English dictionary from unix),
@@ -95,7 +95,7 @@ def generate_legit_words(letters, ref_dict=DICTIONARY):
     return words
 
 
-# 2nd idea - implement dfs for words in dictionary
+# 2nd idea for word generation - implement dfs for words in dictionary
 # with given letters (like a stack in dfs)
 
 def dict_from_seq(seq):
@@ -128,29 +128,38 @@ def dfs_in_dict(letters, ref_dict, words_so_far=set()):
         print words_so_far
         letters_so_far.append(letter)
         if not search_space:
+            # start just all words with such first letter
             search_space = [w for w in ref_dict if letter in w]
         else:
             search_space = [w for w in search_space if letter in w]
-        words_from_letters = [w for w in search_space 
-                if dict_from_seq(w) == dict_from_seq(letters_so_far)]
+        words_from_letters = [w for w in search_space if dict_from_seq(
+            w) == dict_from_seq(letters_so_far)]
         if idx >= 3 and words_from_letters:
             for word in words_from_letters:
                 words_so_far.add(word)
     return words_so_far
 
 
-def generate_words_from_dfs(letters, ref_dict=DICTIONARY):
+def generate_words_dfs(letters, ref_dict=DICTIONARY):
     return dfs_in_dict(letters, ref_dict)
 
 
-print generate_words_from_dfs(['a', 'm', 'a', 'z', 'o', 'n'])
+print generate_words_dfs(['a', 'm', 'a', 'z', 'o', 'n'])
 
-print generate_legit_words(['a', 'm', 'a', 'z', 'o', 'n'])
+print generate_words_brute(['a', 'm', 'a', 'z', 'o', 'n'])
 
+# 3rd idea for word generation - preprocess optimal positions for high-scoring letters given all possible word lengths
+# works really well for empty board - you work out the best placement of an x-long
+# string and find such words, where letter multiplier cells fall
+# on high-worth words.
+# Word length means it will land on same strip to collect word multipliers
+
+
+###
 # Scoring - also brute force
 # scoring word on given strip of board
 # calculating the max score for a word on a board in a state (default=empty)
-
+###
 
 def score_word_on_strip(word, board_strip):
     """
@@ -192,8 +201,8 @@ def max_score_on_board(word, board_state=EMPTY_BOARD):
 
 
 def find_max_word_and_score(words, board_state=EMPTY_BOARD):
-    """ Given an array of words and a board state (default = empty) 
-    return a tuple of word and its score for the highest scoring word 
+    """ Given an array of words and a board state (default = empty)
+    return a tuple of word and its score for the highest scoring word
     on such a board layout """
     print words
     max_value = -1
@@ -212,14 +221,17 @@ class TestScrabble(unittest.TestCase):
     def test_queue_is_72_on_empty(self):
         self.assertEqual(72, max_score_on_board("queue"))
 
-    def test_strip_equals_word_len(self):
-        pass
+    def test_dfs_and_brute_word_gen(self):
+        letters = generate_letters(6)
+        brute_words = generate_words_brute(letters)
+        dfs_words = generate_words_dfs(letters)
+        self.assertEqual(brute_words, dfs_words)
 
 
 if __name__ == '__main__':
     for _ in xrange(5):
         rand_letters = generate_letters(6)
         print rand_letters
-        x = find_max_word_and_score(generate_legit_words(rand_letters))
+        x = find_max_word_and_score(generate_words_brute(rand_letters))
         print x
     unittest.main(verbosity=10)
