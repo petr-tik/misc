@@ -110,7 +110,7 @@ def dict_from_seq(seq):
     return hashmap
 
 
-def dfs_in_dict(letters, ref_dict, words_so_far=[]):
+def dfs_in_dict(letters, ref_dict, words_so_far=set()):
     """ Given letters, a dictionary and (optionally) an array of words,
     search for words you can make from letters.
     Use Depth-First search-like idea:
@@ -131,12 +131,11 @@ def dfs_in_dict(letters, ref_dict, words_so_far=[]):
             search_space = [w for w in ref_dict if letter in w]
         else:
             search_space = [w for w in search_space if letter in w]
-        words_from_letters = [w for w in search_space if dict_from_seq(
-            w) == dict_from_seq(letters_so_far)]
+        words_from_letters = [w for w in search_space 
+                if dict_from_seq(w) == dict_from_seq(letters_so_far)]
         if idx >= 3 and words_from_letters:
             for word in words_from_letters:
-                if word not in words_so_far:
-                    words_so_far.append(word)
+                words_so_far.append(word)
     return words_so_far
 
 
