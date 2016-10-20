@@ -144,10 +144,6 @@ def generate_words_dfs(letters, ref_dict=DICTIONARY):
     return dfs_in_dict(letters, ref_dict)
 
 
-print generate_words_dfs(['a', 'm', 'a', 'z', 'o', 'n'])
-
-print generate_words_brute(['a', 'm', 'a', 'z', 'o', 'n'])
-
 # 3rd idea for word generation - preprocess optimal positions for high-scoring letters given all possible word lengths
 # works really well for empty board - you work out the best placement of an x-long
 # string and find such words, where letter multiplier cells fall
@@ -223,15 +219,23 @@ class TestScrabble(unittest.TestCase):
 
     def test_dfs_and_brute_word_gen(self):
         letters = generate_letters(6)
+        print letters
         brute_words = generate_words_brute(letters)
         dfs_words = generate_words_dfs(letters)
         self.assertEqual(brute_words, dfs_words)
 
+    def test_dfs_and_brute_amazon(self):
+        amazon = ['a', 'm', 'a', 'z', 'o', 'n']
+        self.assertEqual(generate_words_dfs(amazon),
+                         generate_words_brute(amazon))
+
 
 if __name__ == '__main__':
+    """
     for _ in xrange(5):
         rand_letters = generate_letters(6)
         print rand_letters
         x = find_max_word_and_score(generate_words_brute(rand_letters))
         print x
+    """
     unittest.main(verbosity=10)
