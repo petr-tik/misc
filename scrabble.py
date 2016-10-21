@@ -10,8 +10,8 @@ from functools import reduce
 """
 Original Problem:
 
-Given a collection of letters, scrabble board and a reference dictionary,
-return the best-scoring word on a scrabble board.
+Given a collection of letters, a scrabble board state (default=empty) and a reference dictionary,
+return the best-scoring word on that scrabble board.
 
 Harder Problem:
 Given a partially filled-in scrabble board, return the best-scoring word
@@ -21,9 +21,10 @@ Solution idea:
 2 problems:
    * Given letters, generate words in dictionary and sort them by value
    * Find which word is placed best to give the best result
-First generate possible words from given letters
-Sort words by their letter-score
-Try all possible placements on an empty scrabble board, keep max_value, return the best word.
+First generate possible words from given letters - 3 methods
+1. brute force letter permutations
+2. dfs on the dictionary given all possible stacks of letters
+3. Make a dictionary length : word : score structure, where words of length are sorted according to score. Given letters make all possible words from letters, sort by length and travers each subdict for the best scoring word
 
 
 """
@@ -212,12 +213,22 @@ def find_max_word_and_score(words, board_state=EMPTY_BOARD):
     return max_word, max_value
 
 
+###
+# Testing all of the above
+# first separate functions
+# then different methods' equivalence
+###
+
+
 class TestScrabble(unittest.TestCase):
 
     def test_queue_is_72_on_empty(self):
+        """ Testing that the word queue scores 72 on an empty board """
         self.assertEqual(72, max_score_on_board("queue"))
 
     def test_dfs_and_brute_word_gen(self):
+        """ Testing that brute force and dfs search 
+        return the same result for random letters """
         letters = generate_letters(6)
         print letters
         brute_words = generate_words_brute(letters)
