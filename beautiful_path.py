@@ -5,13 +5,14 @@ from collections import deque
 # https://www.hackerrank.com/challenges/beautiful-path
 
 # Turn the graph into unweighted, so you can run bfs on it. 
-# There are only 2**10 binary lengths between 2 vertices
+# There are only 2^10 = 1024 possible lengths between 2 vertices
 
 def make_graph():
-    N, M = [int(x) for x in raw_input().split()]
-    graph = {x:[] for x in xrange(N)}    
-    for _ in xrange(M):
+    num_vertices, num_edges = [int(x) for x in raw_input().split()]
+    graph = {x:[] for x in xrange(num_vertices)}    
+    for _ in xrange(num_edges):
         start, finish, cost = [int(x) for x in raw_input().split()]
+        # turn into undirected graph by adding each edge to both vertices
         graph[start-1].append((finish-1, cost))
         graph[finish-1].append((start-1, cost))
          
