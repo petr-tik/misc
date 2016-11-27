@@ -2,10 +2,22 @@
 
 import pytest
 
-""" Write a function that compresses a string and returns it """
+"""
+Write a function that compresses a string and returns it
+eg. given a string like aaabbcccdff, return a3b2c3d1f2
+"""
+
 
 def iter_compress(input_string):
-    """ Given a string like aaabbcccdff, return a3b2c3d1f2 """
+    """
+    Takes input string as input, returns compressed string.
+
+    Iterate over every character in input.
+    if the char same as last counted char - increment its counter in the res array
+    else: add {char}1 to the res array
+
+    return res array as string
+    """
     res = []
     for char in input_string:
         if not res or res[-1][0] != char:
@@ -20,6 +32,12 @@ def iter_compress(input_string):
 
 
 def func_compress(input_string, res=[]):
+    """
+    Recursive solution of compressing a string.
+    Same idea as iterative, instead of iterating over the input_string
+    pass the string and res array into the next recursive func call
+    when string is empty, return contents of the array.
+    """
     if input_string == "":
         outcome = format("".join(res))
         return outcome
@@ -32,10 +50,14 @@ def func_compress(input_string, res=[]):
         new_char_n_count = "{}{}".format(new_char, count_of_last_char + 1)
         res[-1] = new_char_n_count
 
+    # need to return the recursive function call
+    # otherwise the function returns None
     return func_compress(input_string[1:], res)
+
 
 def test_iter_compress():
     assert iter_compress("aaabbcccdff") == "a3b2c3d1f2"
+
 
 def test_iter_is_func():
     x = "aaabbcccdff"
