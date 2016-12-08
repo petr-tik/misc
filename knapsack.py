@@ -3,11 +3,15 @@
 # https://www.hackerrank.com/challenges/unbounded-knapsack
 
 considered = {}
+
+
 def recur_solve(cur_value, arr, k, considered):
+    """ Recursive solution. Takes cur_value, array, k and 
+    already considereed hashmap (for memoization). """
     # memoization - if already solved, use the solution
     if cur_value in considered:
         return considered[cur_value]
-    
+
     # optimisation hacks
     # you can use the numbers as many times as possible, so once you have:
     # 1 or a multiple of k, you are good
@@ -20,16 +24,16 @@ def recur_solve(cur_value, arr, k, considered):
     temp = cur_value
     # for the value already calculated, try adding every number from array
     for item in arr:
-        if cur_value + item <= k: # once the running total is greater than k, stop
+        if cur_value + item <= k:  # once the running total is greater than k, stop
             res = recur_solve(cur_value + item, arr, k, considered)
-            # the maximum you can get starting at cur_value is 
+            # the maximum you can get starting at cur_value is
             temp = max(temp, res)
-    
-    # now that temp is the maximum it can be, add it to a hashmap    
-    considered[cur_value] = temp    
-    return temp    
-    
-## HackerRank boilerplate
+
+    # now that temp is the maximum it can be, add it to a hashmap
+    considered[cur_value] = temp
+    return temp
+
+# HackerRank boilerplate
 """    
 T = int(raw_input())
 for _ in xrange(T):
