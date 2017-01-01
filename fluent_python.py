@@ -29,11 +29,18 @@ print(big_list[TwoStep])  # and lists
 
 DB_Record = namedtuple('Record', "name age job salary")
 # can take a string of args separated by whitespace
+# namedtuple treats the string and splits it across whitespace
+# "name age job salary".split()
+
 
 first_record = DB_Record("john", 25, "journalist", 25000)
 print(first_record)
 second_rec = DB_Record("bob", 30, "jobless", 0)
-# dicts and sets
+
+# strings
+
+
+""" dicts and sets """
 
 
 def zero_func_for_anagram():
@@ -51,9 +58,20 @@ for char in word:
     anagram_dict[char] += 1
 print(anagram_dict)
 
+plain_dict = {}
 # instead of
 for char in word:
-    if anagram_dict.has_key(char):
-        anagram_dict[char] += 1
+    if plain_dict.has_key(char):
+        plain_dict[char] += 1
     else:
-        anagram_dict[char] = 1
+        plain_dict[char] = 1
+
+
+# to collect lists of indices, where a char appears
+# use list()
+char_idx_dict = defaultdict(list)  # if missing, start a list at key
+
+for idx, char in enumerate(word):
+    char_idx_dict[char].append(idx)
+
+print(char_idx_dict)
