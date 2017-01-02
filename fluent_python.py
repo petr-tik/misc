@@ -75,3 +75,36 @@ for idx, char in enumerate(word):
     char_idx_dict[char].append(idx)
 
 print(char_idx_dict)
+""" functions """
+
+
+def ex_func():
+    """ docstring """
+    x = 5  # comment 0
+    # comment 1
+    return None
+
+print(ex_func.__doc__)
+print(inspect.getcomments(ex_func))
+
+
+# inspecting and disassembling
+
+import dis
+import inspect
+
+""" dis is a builtin module for exploring/disassembling python bytecode
+Interesting methods include:
+     code_info - given a method/func/code
+     dis - disassemlber a class/method/func
+ """
+
+for line in dis.code_info(ex_func).split("\n"):
+    print(line)
+
+
+""" Decorators 
+2 decorators are in functools:
+singledespatch - like different func bodies for different argument types
+lru_cache - least-recently used cache - if maxsize=None grows without limit and stores returns from different function calls. typed=(default False) will tell between float 3.0 and int 3 and store results separately. This is good, but also shows the weakness switching between static and dynamic typing paradigm in one language
+
