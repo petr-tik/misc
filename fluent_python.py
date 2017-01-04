@@ -108,3 +108,21 @@ for line in dis.code_info(ex_func).split("\n"):
 singledespatch - like different func bodies for different argument types
 lru_cache - least-recently used cache - if maxsize=None grows without limit and stores returns from different function calls. typed=(default False) will tell between float 3.0 and int 3 and store results separately. This is good, but also shows the weakness switching between static and dynamic typing paradigm in one language
 
+"""
+
+
+""" Chapter 8. Object references, mutability and recycling
+
+is - operator for testing if the object IDs are the same 
+i.e. if they share a reference to same data
+== - operator to check for equality of values. 
+
+Shallow copies keep the references/pointers to the same underlying data structure,
+making it globally mutable. Deepcopy actually creates a new object and 
+binds the variable to the newly created object with (==) equivalent values.
+
+Function parameters are also references, NOT values. 
+Good, defensive python practices don't pass the arguments to self.property, as it keeps the references/pointers to original data structure, 
+which might affect other objects created later. 
+Use a list, listcomp any other method to create a class-local variable with the same values
+"""
