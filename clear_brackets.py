@@ -14,6 +14,9 @@ def min_parens_remove(string):
     """
     stack = list()
     compl = {"(": ")", ")": "("}
+    # to support different types of brackets
+    #compl.update({"{": "}", "}": "{", "[": "]", "]": "["})
+    print(compl)
     counter = 0
     for char in string:
         if char in compl:
