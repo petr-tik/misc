@@ -11,17 +11,19 @@ def min_parens_remove(string):
     """ Input: string with 0 or more parenthesis
         Output: int - minimal number of parens we must remove 
     for the rest of the parens to be in correct order ()()()
+
+    to handle different types of parens, add bracket-specific stacks, 
+    but keep the same counter var
+    to support different types of brackets
+    compl.update({"{": "}", "}": "{", "[": "]", "]": "["})
     """
     stack = list()
     compl = {"(": ")", ")": "("}
-    # to support different types of brackets
-    #compl.update({"{": "}", "}": "{", "[": "]", "]": "["})
-    print(compl)
     counter = 0
     for char in string:
         if char in compl:
             # only examine brackets
-            if not stack or stack[-1] == char:
+            if not stack or stack[-1] != compl[char]:
                 # if the top of stack paren doesn't close the current char,
                 # increment counter and add it to stack
                 stack.append(char)
