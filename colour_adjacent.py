@@ -15,12 +15,12 @@ class Node():
     """ Node for 2D matrix representation, where nodes 
     that share an edge are neighbours """
 
-    def __init__(self, value, child1, child2, child3, child4):
+    def __init__(self, value, childUp=None, childDown=None, childLeft=None, childRight=None):
         self.value = value
-        self.child1 = child1
-        self.child2 = child2
-        self.child3 = child3
-        self.child4 = child4
+        self.childUp = childUp
+        self.childDown = childDown
+        self.childLeft = childLeft
+        self.childRight = childRight
 
 
 def matrix_index(matrix, index_tuple):
