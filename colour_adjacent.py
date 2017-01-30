@@ -94,3 +94,31 @@ def solve():
     print(res == colour_matrix(test_m, (0, 2), 9))
 
 solve()
+
+
+# graph solution
+
+Build a graph of the matrix with value and up, down, left and right children
+Run recursive bfs on the graph and change all the colours
+
+
+class Node:
+    """"""
+
+    def __init__(self, value, childUp=None, childDown=None,
+                 childLeft=None, childRight=None):
+        self.value = value
+        self.childUp = childUp
+        self.childDown = childDown
+        self.childRight = childRight
+        self.childLeft = childLeft
+
+
+def make_graph(matrix):
+    """ Given an array of array as matrix, 
+    return a graph built using the Node class """
+    return graph
+
+
+def bfs(graph, cur_pos, new_colour, visited=set()):
+    pass
