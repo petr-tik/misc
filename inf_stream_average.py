@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
 
-""" Calcuate the average of an infinite stream of numbers """
+""" Calcuate the average of an infinite stream of numbers 
+fb interview puzzle
+"""
 
 import random as rnd
 
