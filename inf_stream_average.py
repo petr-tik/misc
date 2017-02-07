@@ -8,11 +8,8 @@ import random as rnd
 
 
 def gen_number(l_limit, u_limit):
-    yield rnd.randint(0, 50)
+    return rnd.randint(l_limit, u_limit)
 
-
-for x in xrange(gen_number(5, 10)):
-    print x
 
 def calc_mean(mean_so_far, counter, new_val):
     """ Input:
@@ -34,13 +31,28 @@ def gen_mean_so_far(start, finish):
         Generates/yields:
               average so far
     """
-
     mean_so_far = 0
     counter = 0
     for item in range(start, finish):
         mean_so_far = calc_mean(mean_so_far, counter, item)
         yield(mean_so_far)
         counter += 1
+
+
+def gen_inf_stream():
+    """ Infinite generator """
+    low = 0
+    high = 120
+    yield(rnd.randint(low, high))
+
+
+def gen_mean_from_infinite_stream(gen_inf_stream):
+    """ Input: 
+              Generator that yields the next value
+        Yields:
+              average so far
+    """
+
 
 for next_avg in gen_mean_so_far(10, 15):
     print(next_avg)
