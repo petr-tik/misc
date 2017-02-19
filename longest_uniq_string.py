@@ -1,7 +1,8 @@
 """
 Find longest substring with unique characters in O(n) time.
 
-Bloomberg puzzle
+co: bloomberg
+status: done
 """
 
 import string
