@@ -1,8 +1,10 @@
 #! /usr/bin/env python3
 
+import math
+
 """
 co: Bloomberg
-status: WIP
+status: solved
 given a number N, print numbers from 1 to N in lexicographic order
 e.g., 1 -> 25: 1,10,11,12,....,19,2,20,21,...,25,3,4,5,6,7,8,9
 e.g   1 -> 247 1, 10, 100,
@@ -49,26 +51,53 @@ def brute_force(finish):
 
     return print_ll(start)
 
-print(brute_force(10))
+# print(brute_force(10))
 
 
-def recursive_solution(finish, tree):
-    """ Recursive solution using trees 
-    log(finish, 10) determines the depth of tree
-    if depth > x, all levels above x are complete
+def print_from_p_to_s(prefix, suffix):
+    """ Called recursively. Given numeric prefix and suffix, 
+    print the numbers in a lexicographic order. Returns nothing  """
+    # eg. 8431
+    if suffix == 0:
+        print(prefix)
+        return
+    if prefix != 0:
+        print("finally, a prefix", prefix)
 
+    # 137 is 10**2, but has length 3
+    length = int(math.log(suffix, 10)) + 1
+    # greatest power of ten that is less than or equal the suffix
+    closest_power_of_ten = 10**(length - 1)
+
+    first_digit = int(suffix / closest_power_of_ten)
+    # all but the first digit - same order of magnitude
+    remainders = suffix - first_digit * closest_power_of_ten
+    # order of magnitude one less all nines
+    remainders9 = 10**(length - 1) - 1
+
+    # print digits up to the first digit in the number
+    for i in range(first_digit):
+        if i == 0 and prefix == 0:
+            continue
+        print_from_p_to_s(10 * prefix + i, remainders9)
+    print_from_p_to_s(10 * prefix + first_digit, remainders)
+
+    if remainders9 == 0:
+        return
+
+    # print all the numbers with the first digit greater
+    # than the first digit of finish
+    # eg. 999
+    for i in range(first_digit + 1, 10):
+        print_from_p_to_s(10 * prefix + i, int(remainders9 / 10))
+
+
+def recursive_dfs(finish):
+    """ 
+    Recursive solution using print_from_p_to_s
     """
-    if finish <= 9:
-        return list(range(1, finish + 1))
-    if res == {}:
-        res = {str(k): [] for k in range(1, 10)}
+    # print(1)
+    print_from_p_to_s(0, finish)
 
 
-def print_tree(root):
-    """ Given a tree 
-            x
-          /  \
-         y    z
-
-    print x, xy, xz
-    """
+recursive_dfs(10)
