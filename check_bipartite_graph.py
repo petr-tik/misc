@@ -12,9 +12,10 @@ Graphs are represented as adjacency dictionaries with digits for nodes
 
 import collections
 
-test_bipartite = {1: [4, 5, 6], 2: [4, 5, 6], 3: [4, 5, 6],
-                  4: [1, 2, 3], 5: [1, 2, 3], 6: [1, 2, 3]}
+# test_bipartite = {1: [4, 5, 6], 2: [4, 5, 6], 3: [4, 5, 6],
+#                   4: [1, 2, 3], 5: [1, 2, 3], 6: [1, 2, 3]}
 
+test_bipartite = {1: [2, 3], 2: [1, 4], 3: [1, 3], 4: [2, 3]}
 test_not_bipartite = {digit: list(range(7)) for digit in range(7)}
 
 # 1: [4, 5, 6], 2: [4, 5, 6], 3: [4, 5, 6],
@@ -37,8 +38,9 @@ def bfs(graph, queue, visited=set(), counter=0, set_a=[], set_b=[]):
             return bfs(graph, queue, visited, counter, set_a, set_b)
         visited.add(cur)
         children = graph[cur]
-        eligible_children = [
-            x for x in children if x not in queue and x not in visited]
+        eligible_children = [child for child in children
+                             if child not in queue and child not in visited]
+        print(eligible_children)
         if counter % 2 == 0:
             if any(child in set_a for child in children):
                 print cur, children, set_a, counter

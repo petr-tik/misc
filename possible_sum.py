@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 
+status: WIP
+co: 4
+
 """
 Given an array of ints (default - 6), array of operations (default - addition, multiplication, division, deduction)
 and a target int value, return True, if it's possible to combine all numbers in the array with operations to result in 
